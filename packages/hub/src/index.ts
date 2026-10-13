@@ -16,4 +16,4 @@ export {
 export { fetchRelease, OES_RELEASE, packageFiles, preparePackage, type Issue, type PreparedVersion } from "./prepare.js";
 export { generateSite } from "./site.js";
 export { verifyStoredVersion, writeVersion } from "./store.js";
-export { compareSemver } from "./semver.js";
+export { compareSemver } from "@inklyre/oes-core";

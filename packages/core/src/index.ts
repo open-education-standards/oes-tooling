@@ -6,3 +6,4 @@ export * from "./hash.js";
 export * from "./digest.js";
 export * from "./bundle.js";
 export * from "./check.js";
+export * from "./semver.js";

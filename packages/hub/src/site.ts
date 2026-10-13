@@ -17,7 +17,7 @@ import {
 } from "@inklyre/oes-core";
 import type { HubConfig, PackageSource, StoredVersion } from "./hub-files.js";
 import { indexPage, packagePage, SEARCH_JS, STYLE_CSS } from "./html.js";
-import { compareSemver } from "./semver.js";
+import { compareSemver } from "@inklyre/oes-core";
 
 function checked<T>(docType: DocumentType, doc: T, what: string): T {
   const result = validate(docType, doc);

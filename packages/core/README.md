@@ -18,6 +18,13 @@ npm install @inklyre/oes-core
   own validator (`test/conformance.test.ts`) — a schema change with no
   matching type update fails that suite.
 - **Validate** — one JSON Schema validator (`ajv`) per document type.
+- **Bundle** — `bundlePackage()` turns an OPK package into its bundled
+  payload: references become `ref` keys, prose is inlined, relative paths
+  and links are rewritten relative to the bundle, answer keys are
+  withheld, and the output is byte-identical on every run.
+- **Digest** — `packageDigest()` computes an OPK package digest exactly as
+  the spec defines it (the same result as the `sha256sum` one-liner in the
+  spec).
 - **Resolve** — walks a course/set's `path`/`*_url` references into one
   fully-resolved, validated tree, using a pluggable `ContentSource` so the
   exact same resolution logic runs from the local filesystem (a CLI, the

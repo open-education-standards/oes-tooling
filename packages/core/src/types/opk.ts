@@ -63,7 +63,11 @@ export interface OpkBundle {
   package: { name: string; version: string; digest: string };
   generated_from?: { oes_version?: string };
   entry: { type: OpkEntryType; id: string };
-  /** Keyed `{type}:{id}`, e.g. `"question:two-sum"`. */
+  /**
+   * Keyed `{type}:{id}`, e.g. `"question:two-sum"`. References inside
+   * these documents carry `ref` (a key) instead of `path`/`*_url`, and a
+   * question's `answer_key` is `{ withheld: true }`.
+   */
   documents: Record<string, unknown>;
   assets?: OpkBundleAsset[];
 }
@@ -104,6 +108,10 @@ export interface OpkPublishedVersion {
   manifest: string;
   /** The version's bundled payload, relative to this document or absolute. */
   bundle: string;
+  /** `sha256-{hex}` of the bundle file's bytes. */
+  bundle_sha256: string;
+  /** The directory holding the package's own files; the bundle's relative URLs resolve here. */
+  files: string;
   /** Still fetchable, but hidden from browsing and never chosen for a new import. */
   yanked?: boolean;
   yanked_reason?: string;

@@ -5,7 +5,7 @@ packaged for npm consumption.
 
 ## Building against a spec branch
 
-`scripts/fetch-schemas.mjs` reads from `inklyre/oes@main` by default. When
+`scripts/fetch-schemas.mjs` reads from `open-education-standards/oes@main` by default. When
 a schema change is still on a branch, point it there instead:
 
 ```bash

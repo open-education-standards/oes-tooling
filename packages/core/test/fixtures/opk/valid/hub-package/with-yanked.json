@@ -8,7 +8,9 @@
       "digest": "sha256-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "published_at": "2026-10-13",
       "manifest": "databases/2.1.0/package.json",
-      "bundle": "databases/2.1.0/bundle.json"
+      "bundle": "databases/2.1.0/bundle.json",
+      "bundle_sha256": "sha256-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "files": "databases/2.1.0/files/"
     },
     {
       "version": "2.0.0",
@@ -17,7 +19,9 @@
       "manifest": "databases/2.0.0/package.json",
       "bundle": "databases/2.0.0/bundle.json",
       "yanked": true,
-      "yanked_reason": "Answer key in question 4 was wrong; use 2.1.0."
+      "yanked_reason": "Answer key in question 4 was wrong; use 2.1.0.",
+      "bundle_sha256": "sha256-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "files": "databases/2.0.0/files/"
     }
   ]
 }

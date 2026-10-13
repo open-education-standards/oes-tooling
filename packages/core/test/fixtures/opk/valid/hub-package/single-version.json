@@ -8,7 +8,9 @@
       "digest": "sha256-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "published_at": "2026-10-13",
       "manifest": "databases/1.0.0/package.json",
-      "bundle": "databases/1.0.0/bundle.json"
+      "bundle": "databases/1.0.0/bundle.json",
+      "bundle_sha256": "sha256-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "files": "databases/1.0.0/files/"
     }
   ]
 }

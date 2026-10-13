@@ -1,4 +1,4 @@
-import { useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import type { CheckResult, OqfQuestion, OqfStimulus, QuestionResponse } from "@inklyre/oes-core";
 import { Markdown } from "./Markdown.js";
 
@@ -84,6 +84,14 @@ export function QuestionView({ question, stimulus, response, onResponse, result,
   const md = (source: string) => <Markdown source={source} resolveUrl={resolveUrl} />;
   const statement = typeof q.statement === "string" ? q.statement : "";
   const name = `oes-q-${q.id}`;
+
+  // An order question always has an answer: the arrangement on screen. Report
+  // the initial one, so checking without moving anything isn't "unanswered".
+  useEffect(() => {
+    if (q.type !== "order" || response?.type === "order" || locked) return;
+    const initial = q.type_config.shuffle === false ? q.type_config.items : seededShuffle(q.type_config.items, seed);
+    onResponse({ type: "order", order: initial.map((i) => i.id) });
+  }, [q, seed]);
 
   const input = useMemo<ReactNode>(() => {
     switch (q.type) {

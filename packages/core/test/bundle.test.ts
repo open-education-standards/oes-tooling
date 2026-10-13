@@ -220,6 +220,17 @@ describe("bundlePackage", () => {
     expect(bundle.assets!.map((a) => a.id)).not.toContain("sets/s1/questions/q1/answer-key.json");
   });
 
+  it("rewrites links once, also with an empty filesBase (content served from its own root)", async () => {
+    const root = await makePackage(COURSE);
+    const index = await fileIndex(root, COURSE);
+    const { bundle, errors } = await bundlePackage(fsSource(root), manifest, { filesBase: "", fileExists: (p) => index.has(p) });
+    expect(errors).toEqual([]);
+    const docs = bundle.documents as Record<string, Record<string, unknown>>;
+    expect(docs["article:a1"]!.content).toBe(`See ![figure](${L}/articles/a1/assets/fig.png) and [notes](${L}/articles/a1/notes.md#part-2).`);
+    expect(docs["stimulus:st1"]!.content).toBe("Chart: ![chart](sets/s1/stimuli/st1/chart.png)");
+    expect(docs["question:q3"]!.statement).toBe("Question q3");
+  });
+
   it("produces byte-identical output on every run", async () => {
     const a = await bundleTree(COURSE);
     const b = await bundleTree(COURSE);

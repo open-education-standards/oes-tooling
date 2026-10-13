@@ -97,6 +97,17 @@ describe("QuestionView", () => {
     expect(onResponse).toHaveBeenCalledWith({ type: "order", order: ["y", "x"] });
   });
 
+  it("order: the arrangement on screen counts as the answer, even unmoved", () => {
+    const question = q("order", {
+      items: [{ id: "x", content: "First" }, { id: "y", content: "Second" }],
+      correct_order: ["x", "y"],
+      shuffle: false,
+    });
+    render(<Harness question={question} />);
+    fireEvent.click(screen.getByText("Check"));
+    expect(screen.getByRole("status").textContent).toContain("Correct.");
+  });
+
   it("says a secured question is graded elsewhere", () => {
     const question = q("mcq", { options: [{ id: "a", content: "A" }] }, { answer_key: { withheld: true } });
     render(<Harness question={question} check />);

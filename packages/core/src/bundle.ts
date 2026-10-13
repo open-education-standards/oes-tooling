@@ -144,8 +144,10 @@ class Bundler {
     this.keyByLocation.set(location, key);
     const dir = dirOf(location);
 
-    await this.processDocument(type, doc, dir, location);
+    // Inline prose strings first, then prose files: each piece of prose is
+    // rewritten exactly once, relative to where it was written.
     this.rewriteProse(doc, dir, location);
+    await this.processDocument(type, doc, dir, location);
 
     const canonical = JSON.stringify(doc);
     const existing = this.canonicalByKey.get(key);
@@ -368,9 +370,8 @@ class Bundler {
   }
 
   private rewriteMarkdown(text: string, dir: string, at: string): string {
-    // Already-rewritten links point under filesBase; leave them alone.
     const rewrite = (target: string, image: boolean): string => {
-      if (!isRelativeTarget(target) || target.startsWith(this.filesBase)) return target;
+      if (!isRelativeTarget(target)) return target;
       const hashAt = target.search(/[?#]/);
       const bare = hashAt === -1 ? target : target.slice(0, hashAt);
       const suffix = hashAt === -1 ? "" : target.slice(hashAt);

@@ -17,7 +17,7 @@ const SPEC_DOC_TYPES: Record<string, DocumentType | Record<string, DocumentType>
   ovf: "ovf.video",
   orf: "orf.resource",
   opf: "opf.set",
-  opk: "opk.package",
+  opk: { package: "opk.package", hub: "opk.hub", "hub-package": "opk.hub-package" },
   oqf: { question: "oqf.question", stimulus: "oqf.stimulus" },
   ocf: { course: "ocf.course", module: "ocf.module", lesson: "ocf.lesson" },
 };

@@ -1,0 +1,14 @@
+{
+  "opk_version": "0.2.0",
+  "kind": "hub-package",
+  "name": "acme/databases",
+  "versions": [
+    {
+      "version": "v1",
+      "digest": "sha256-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "published_at": "2026-10-13",
+      "manifest": "databases/v1/package.json",
+      "bundle": "databases/v1/bundle.json"
+    }
+  ]
+}

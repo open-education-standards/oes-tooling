@@ -1,0 +1,15 @@
+{
+  "opk_version": "0.2.0",
+  "kind": "hub",
+  "hub": {
+    "title": "Example Hub"
+  },
+  "packages": [
+    {
+      "name": "databases",
+      "title": "Databases",
+      "latest": "1.0.0",
+      "url": "packages/databases.json"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "opk_version": "0.2.0",
+  "kind": "hub",
+  "hub": {
+    "title": "An empty hub"
+  },
+  "packages": []
+}

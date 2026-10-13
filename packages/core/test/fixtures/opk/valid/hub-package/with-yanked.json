@@ -1,0 +1,23 @@
+{
+  "opk_version": "0.2.0",
+  "kind": "hub-package",
+  "name": "acme/databases",
+  "versions": [
+    {
+      "version": "2.1.0",
+      "digest": "sha256-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "published_at": "2026-10-13",
+      "manifest": "databases/2.1.0/package.json",
+      "bundle": "databases/2.1.0/bundle.json"
+    },
+    {
+      "version": "2.0.0",
+      "digest": "sha256-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "published_at": "2026-10-13",
+      "manifest": "databases/2.0.0/package.json",
+      "bundle": "databases/2.0.0/bundle.json",
+      "yanked": true,
+      "yanked_reason": "Answer key in question 4 was wrong; use 2.1.0."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "opk_version": "0.2.0",
+  "kind": "hub",
+  "hub": {
+    "title": "Example Hub",
+    "description": "Public OES content.",
+    "homepage": "./"
+  },
+  "packages": [
+    {
+      "name": "acme/databases",
+      "title": "Databases",
+      "description": "An introductory course on relational databases.",
+      "entry_type": "course",
+      "tags": [
+        "databases",
+        "sql"
+      ],
+      "latest": "2.1.0",
+      "url": "packages/acme/databases.json"
+    },
+    {
+      "name": "acme/sql-drills",
+      "title": "SQL drills",
+      "entry_type": "set",
+      "latest": "1.0.0-beta.1",
+      "url": "packages/acme/sql-drills.json"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "opk_version": "0.2.0",
+  "kind": "hub",
+  "hub": {
+    "title": "Old Hub"
+  },
+  "moved_to": "https://hub.example.org/index.json",
+  "packages": []
+}

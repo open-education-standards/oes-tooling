@@ -8,7 +8,9 @@
 import oafArticleSchema from "../vendor/oaf/v0.2.0/article.schema.json";
 import ocfCourseSchema from "../vendor/ocf/v0.3.0/course.schema.json";
 import opfSetSchema from "../vendor/opf/v0.3.0/set.schema.json";
-import opkPackageSchema from "../vendor/opk/v0.1.0/package.schema.json";
+import opkHubPackageSchema from "../vendor/opk/v0.2.0/hub-package.schema.json";
+import opkHubSchema from "../vendor/opk/v0.2.0/hub.schema.json";
+import opkPackageSchema from "../vendor/opk/v0.2.0/package.schema.json";
 import oqfQuestionSchema from "../vendor/oqf/v0.2.0/question.schema.json";
 import oqfStimulusSchema from "../vendor/oqf/v0.2.0/stimulus.schema.json";
 import orfResourceSchema from "../vendor/orf/v0.1.0/resource.schema.json";
@@ -22,6 +24,8 @@ export const schemas = {
   "oqf.stimulus": { schema: oqfStimulusSchema },
   "opf.set": { schema: opfSetSchema },
   "opk.package": { schema: opkPackageSchema },
+  "opk.hub": { schema: opkHubSchema },
+  "opk.hub-package": { schema: opkHubPackageSchema },
   // OCF is one schema file covering three document types via #/definitions/{name}.
   "ocf.course": { schema: ocfCourseSchema, definition: "course" },
   "ocf.module": { schema: ocfCourseSchema, definition: "module" },

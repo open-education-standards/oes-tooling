@@ -1,0 +1,14 @@
+{
+  "opk_version": "0.2.0",
+  "kind": "hub",
+  "hub": {
+    "title": "Example Hub"
+  },
+  "packages": [
+    {
+      "name": "acme/databases",
+      "title": "Databases",
+      "latest": "1.0.0"
+    }
+  ]
+}

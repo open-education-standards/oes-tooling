@@ -1,7 +1,7 @@
 {
-  "opk_version": "0.1.0",
+  "opk_version": "0.2.0",
   "name": "acme/databases",
-  "version": "2.1",
+  "version": "1.0.0-rc.1",
   "title": "Databases",
   "entry": {
     "type": "course",

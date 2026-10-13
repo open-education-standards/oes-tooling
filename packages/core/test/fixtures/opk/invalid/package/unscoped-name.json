@@ -1,6 +1,6 @@
 {
-  "opk_version": "0.1.0",
-  "name": "Acme/Databases",
+  "opk_version": "0.2.0",
+  "name": "databases",
   "version": "2.1.0",
   "title": "Databases",
   "entry": {

@@ -1,0 +1,11 @@
+{
+  "opf_version": "0.3.0",
+  "id": "bad-pool-set",
+  "title": "Bad pool example",
+  "questions": [
+    {
+      "id": "warmup-pool",
+      "select": 2
+    }
+  ]
+}

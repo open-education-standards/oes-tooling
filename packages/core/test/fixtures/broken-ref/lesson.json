@@ -1,0 +1,9 @@
+{
+  "ocf_version": "0.3.0",
+  "id": "broken-lesson",
+  "title": "Lesson With A Broken Reference",
+  "items": [
+    { "type": "article", "id": "good", "path": "articles/good" },
+    { "type": "article", "id": "missing", "path": "articles/does-not-exist" }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "oqf_version": "0.2.0",
+  "id": "dup-b",
+  "type": "numerical",
+  "title": "Fine Numerical",
+  "statement": "What is pi, roughly?",
+  "type_config": {
+    "answer": 3.14,
+    "tolerance": 0.01
+  }
+}

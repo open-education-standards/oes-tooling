@@ -1,0 +1,39 @@
+{
+  "oqf_version": "0.2.0",
+  "id": "match-q",
+  "type": "match",
+  "title": "Bad Match",
+  "statement": "Match these.",
+  "type_config": {
+    "left": [
+      {
+        "id": "l1",
+        "content": "Left One"
+      },
+      {
+        "id": "l2",
+        "content": "Left Two"
+      }
+    ],
+    "right": [
+      {
+        "id": "r1",
+        "content": "Right One"
+      },
+      {
+        "id": "r3",
+        "content": "Right Three"
+      }
+    ],
+    "pairs": [
+      {
+        "left_id": "l1",
+        "right_id": "r2"
+      },
+      {
+        "left_id": "l2",
+        "right_id": "r3"
+      }
+    ]
+  }
+}

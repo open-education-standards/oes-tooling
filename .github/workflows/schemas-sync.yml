@@ -1,0 +1,85 @@
+name: "@inklyre/oes-schemas sync + publish"
+
+# Polls the public spec repo (github.com/open-education-standards/oes) for schema changes
+# and publishes a new patch of @inklyre/oes-schemas when they're found.
+# Deliberately schedule/dispatch-triggered rather than push-triggered from
+# oes's side — oes never needs any credential or workflow that reaches
+# into this repo; this repo does all the work, using only read access to
+# a public repo plus its own already-existing NPM_TOKEN.
+
+on:
+  schedule:
+    - cron: "17 6 * * *" # once a day; adjust freely, this isn't latency-sensitive
+  workflow_dispatch: {}
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          registry-url: "https://registry.npmjs.org"
+
+      - run: npm ci
+
+      - name: Fetch current schemas from the spec repo
+        working-directory: packages/schemas
+        run: npm run fetch-schemas
+
+      - name: Check whether schema content changed since the last publish
+        id: check
+        working-directory: packages/schemas
+        run: |
+          NEW_HASH=$(find vendor -type f -name "*.json" | sort | xargs cat | sha256sum | awk '{print $1}')
+          OLD_HASH=$(cat .content-hash 2>/dev/null || echo "")
+          echo "new_hash=$NEW_HASH" >> "$GITHUB_OUTPUT"
+          if [ "$NEW_HASH" = "$OLD_HASH" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Verify
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          npm run typecheck --workspace @inklyre/oes-schemas
+          npm run lint --workspace @inklyre/oes-schemas
+          npm run test --workspace @inklyre/oes-schemas
+          npm run build --workspace @inklyre/oes-schemas
+
+      - name: Bump patch version
+        if: steps.check.outputs.changed == 'true'
+        id: bump
+        working-directory: packages/schemas
+        run: |
+          npm version patch --no-git-tag-version
+          echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Record new content hash
+        if: steps.check.outputs.changed == 'true'
+        working-directory: packages/schemas
+        run: echo "${{ steps.check.outputs.new_hash }}" > .content-hash
+
+      - name: Commit version bump and hash
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add packages/schemas/package.json packages/schemas/.content-hash
+          git commit -m "chore: auto-publish @inklyre/oes-schemas ${{ steps.bump.outputs.version }}"
+          git push
+
+      - name: Publish to npm
+        if: steps.check.outputs.changed == 'true'
+        working-directory: packages/schemas
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

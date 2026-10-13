@@ -1,0 +1,8 @@
+{
+  "ocf_version": "0.3.0",
+  "id": "missing-prose",
+  "title": "Lesson whose article points at a prose file that isn't there",
+  "items": [
+    { "type": "article", "id": "a1", "path": "articles/a1" }
+  ]
+}

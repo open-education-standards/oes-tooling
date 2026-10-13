@@ -1,0 +1,50 @@
+name: "@inklyre/oes-lint CI"
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "packages/lint/**"
+      - "packages/authoring/**"
+      - "packages/core/**"
+      - "packages/import-youtube/**"
+      - "packages/schemas/**"
+      - "scripts/build-workspaces.mjs"
+      - ".github/workflows/lint-ci.yml"
+  pull_request:
+    paths:
+      - "packages/lint/**"
+      - "packages/authoring/**"
+      - "packages/core/**"
+      - "packages/import-youtube/**"
+      - "packages/schemas/**"
+      - "scripts/build-workspaces.mjs"
+      - ".github/workflows/lint-ci.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build workspace dependencies, in dependency order
+        run: npm run build:deps-of -- @inklyre/oes-lint
+
+      - name: Typecheck
+        run: npm run typecheck --workspace @inklyre/oes-lint
+
+      - name: Lint
+        run: npm run lint --workspace @inklyre/oes-lint
+
+      - name: Test
+        run: npm run test --workspace @inklyre/oes-lint
+
+      - name: Build
+        run: npm run build --workspace @inklyre/oes-lint

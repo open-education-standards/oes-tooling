@@ -1,0 +1,8 @@
+{
+  "oaf_version": "0.2.0",
+  "id": "good",
+  "title": "The Good Article",
+  "content": {
+    "file": "content.md"
+  }
+}

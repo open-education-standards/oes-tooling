@@ -1,0 +1,16 @@
+{
+  "oaf_version": "0.2.0",
+  "id": "imported-article",
+  "title": "Imported Article",
+  "content": {
+    "file": "content.md"
+  },
+  "license": "CC-BY-NC-SA-4.0",
+  "source": {
+    "url": "https://example.edu/courses/6.006/readings/intro",
+    "platform": "Example Course Site",
+    "license": "CC-BY-NC-SA-4.0",
+    "retrieved_at": "2026-09-06",
+    "note": "Adapted from the original reading with permission."
+  }
+}

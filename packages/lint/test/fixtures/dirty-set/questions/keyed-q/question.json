@@ -1,0 +1,13 @@
+{
+  "oqf_version": "0.2.0",
+  "id": "keyed-q",
+  "type": "short_answer",
+  "title": "Secured Question",
+  "statement": "Explain briefly.",
+  "type_config": {
+    "grading": "manual"
+  },
+  "answer_key": {
+    "file": "answer.json"
+  }
+}

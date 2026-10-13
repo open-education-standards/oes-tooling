@@ -1,0 +1,8 @@
+{
+  "ocf_version": "0.3.0",
+  "id": "hash-lesson",
+  "title": "Lesson With A Wrong content_hash",
+  "items": [
+    { "type": "article", "id": "a1", "path": "articles/a1", "content_hash": "sha256-0000000000000000000000000000000000000000000000000000000000000000" }
+  ]
+}

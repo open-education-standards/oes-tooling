@@ -1,0 +1,6 @@
+{
+  "oaf_version": "0.2.0",
+  "id": "a1",
+  "title": "Article One",
+  "content": "Inline prose, so the lint fixtures need no sidecar files."
+}

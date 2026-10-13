@@ -1,0 +1,16 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
+    # packages/schemas publishes @inklyre/oes-schemas itself (see
+    # .github/workflows/schemas-sync.yml, which polls the spec repo and
+    # publishes a new patch when its schema content changes) — this group
+    # just batches the resulting version-bump PR for packages/core's
+    # dependency on it separately from unrelated dependency updates.
+    groups:
+      oes-schemas:
+        patterns:
+          - "@inklyre/oes-schemas"

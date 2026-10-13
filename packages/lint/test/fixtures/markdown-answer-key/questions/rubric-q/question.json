@@ -1,0 +1,9 @@
+{
+  "oqf_version": "0.2.0",
+  "id": "rubric-q",
+  "type": "short_answer",
+  "title": "Graded against a Markdown rubric",
+  "statement": "Explain why an index slows writes.",
+  "type_config": { "grading": "manual" },
+  "answer_key": { "file": "answer.md" }
+}

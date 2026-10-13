@@ -1,0 +1,23 @@
+{
+  "oqf_version": "0.2.0",
+  "id": "order-q",
+  "type": "order",
+  "title": "Bad Order",
+  "statement": "Order these.",
+  "type_config": {
+    "items": [
+      {
+        "id": "s1",
+        "content": "First"
+      },
+      {
+        "id": "s2",
+        "content": "Second"
+      }
+    ],
+    "correct_order": [
+      "s1",
+      "s3"
+    ]
+  }
+}

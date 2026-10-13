@@ -1,0 +1,12 @@
+{
+  "oqf_version": "0.2.0",
+  "id": "reading-passage-1",
+  "title": "The Tragedy of the Commons",
+  "authors": [
+    "example-author"
+  ],
+  "license": "CC-BY-4.0",
+  "tags": [
+    "reading-comprehension"
+  ]
+}

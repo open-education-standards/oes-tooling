@@ -1,0 +1,6 @@
+{
+  "ocf_version": "0.3.0",
+  "id": "test-course",
+  "title": "Test Course",
+  "modules": [{ "id": "m1", "path": "modules/m1" }]
+}

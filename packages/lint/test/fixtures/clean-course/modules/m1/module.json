@@ -1,0 +1,6 @@
+{
+  "ocf_version": "0.3.0",
+  "id": "m1",
+  "title": "Module 1",
+  "lessons": [{ "id": "l1", "path": "lessons/l1" }]
+}

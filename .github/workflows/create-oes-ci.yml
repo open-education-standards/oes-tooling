@@ -1,0 +1,52 @@
+name: "create-oes CI"
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "packages/create-oes/**"
+      - "packages/authoring/**"
+      - "packages/core/**"
+      - "packages/import-youtube/**"
+      - "packages/lint/**"
+      - "packages/schemas/**"
+      - "scripts/build-workspaces.mjs"
+      - ".github/workflows/create-oes-ci.yml"
+  pull_request:
+    paths:
+      - "packages/create-oes/**"
+      - "packages/authoring/**"
+      - "packages/core/**"
+      - "packages/import-youtube/**"
+      - "packages/lint/**"
+      - "packages/schemas/**"
+      - "scripts/build-workspaces.mjs"
+      - ".github/workflows/create-oes-ci.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build workspace dependencies, in dependency order
+        run: npm run build:deps-of -- create-oes
+
+      - name: Typecheck
+        run: npm run typecheck --workspace create-oes
+
+      - name: Lint
+        run: npm run lint --workspace create-oes
+
+      - name: Test
+        run: npm run test --workspace create-oes
+
+      - name: Build
+        run: npm run build --workspace create-oes

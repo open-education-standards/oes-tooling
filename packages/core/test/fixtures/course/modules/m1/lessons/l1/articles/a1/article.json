@@ -1,0 +1,9 @@
+{
+  "oaf_version": "0.2.0",
+  "id": "a1",
+  "title": "Article One",
+  "content": {
+    "file": "content.md"
+  },
+  "estimated_mins": 3
+}

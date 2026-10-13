@@ -1,0 +1,46 @@
+name: "@inklyre/oes-import-youtube CI"
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "packages/import-youtube/**"
+      - "packages/core/**"
+      - "packages/schemas/**"
+      - "scripts/build-workspaces.mjs"
+      - ".github/workflows/import-youtube-ci.yml"
+  pull_request:
+    paths:
+      - "packages/import-youtube/**"
+      - "packages/core/**"
+      - "packages/schemas/**"
+      - "scripts/build-workspaces.mjs"
+      - ".github/workflows/import-youtube-ci.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build workspace dependencies, in dependency order
+        run: npm run build:deps-of -- @inklyre/oes-import-youtube
+
+      - name: Typecheck
+        run: npm run typecheck --workspace @inklyre/oes-import-youtube
+
+      - name: Lint
+        run: npm run lint --workspace @inklyre/oes-import-youtube
+
+      - name: Test
+        run: npm run test --workspace @inklyre/oes-import-youtube
+
+      - name: Build
+        run: npm run build --workspace @inklyre/oes-import-youtube

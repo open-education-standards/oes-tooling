@@ -1,0 +1,46 @@
+name: "@inklyre/oes-authoring CI"
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "packages/authoring/**"
+      - "packages/core/**"
+      - "packages/schemas/**"
+      - "scripts/build-workspaces.mjs"
+      - ".github/workflows/authoring-ci.yml"
+  pull_request:
+    paths:
+      - "packages/authoring/**"
+      - "packages/core/**"
+      - "packages/schemas/**"
+      - "scripts/build-workspaces.mjs"
+      - ".github/workflows/authoring-ci.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build workspace dependencies, in dependency order
+        run: npm run build:deps-of -- @inklyre/oes-authoring
+
+      - name: Typecheck
+        run: npm run typecheck --workspace @inklyre/oes-authoring
+
+      - name: Lint
+        run: npm run lint --workspace @inklyre/oes-authoring
+
+      - name: Test
+        run: npm run test --workspace @inklyre/oes-authoring
+
+      - name: Build
+        run: npm run build --workspace @inklyre/oes-authoring

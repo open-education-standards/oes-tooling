@@ -1,0 +1,13 @@
+{
+  "ocf_version": "0.3.0",
+  "id": "l1",
+  "title": "Lesson 1",
+  "items": [
+    { "type": "article", "id": "a1", "path": "articles/a1" },
+    { "type": "practice_set", "id": "ps1", "path": "practice-sets/ps1" },
+    { "type": "resource", "id": "r1", "path": "resources/r1" }
+  ],
+  "related": [
+    { "type": "video", "title": "Watch next", "url": "https://www.youtube.com/watch?v=example" }
+  ]
+}

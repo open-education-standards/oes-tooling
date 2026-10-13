@@ -1,0 +1,46 @@
+name: "@inklyre/oes-renderer CI"
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "packages/renderer/**"
+      - "packages/core/**"
+      - "packages/schemas/**"
+      - "scripts/build-workspaces.mjs"
+      - ".github/workflows/renderer-ci.yml"
+  pull_request:
+    paths:
+      - "packages/renderer/**"
+      - "packages/core/**"
+      - "packages/schemas/**"
+      - "scripts/build-workspaces.mjs"
+      - ".github/workflows/renderer-ci.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build workspace dependencies, in dependency order
+        run: npm run build:deps-of -- @inklyre/oes-renderer
+
+      - name: Typecheck
+        run: npm run typecheck --workspace @inklyre/oes-renderer
+
+      - name: Lint
+        run: npm run lint --workspace @inklyre/oes-renderer
+
+      - name: Test
+        run: npm run test --workspace @inklyre/oes-renderer
+
+      - name: Build
+        run: npm run build --workspace @inklyre/oes-renderer

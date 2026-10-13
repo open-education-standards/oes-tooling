@@ -1,0 +1,8 @@
+{
+  "opf_version": "0.3.0",
+  "id": "markdown-answer-key",
+  "title": "A set whose answer key is Markdown, not JSON",
+  "questions": [
+    { "id": "rubric-q", "path": "questions/rubric-q" }
+  ]
+}

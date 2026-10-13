@@ -1,0 +1,15 @@
+{
+  "name": "oes-tooling",
+  "version": "0.1.0",
+  "description": "Reference tooling for OES (Open Education Standards): types, validation, resolution, linting, and content importers built on the spec at github.com/open-education-standards/oes.",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "node scripts/build-workspaces.mjs",
+    "build:deps-of": "node scripts/build-workspaces.mjs --deps-of"
+  },
+  "license": "Apache-2.0"
+}

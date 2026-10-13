@@ -1,0 +1,34 @@
+name: "OES Lint"
+description: >-
+  Lint an OES content tree for referential integrity: dangling references,
+  duplicate ids, pool select bounds, dangling answer cross-references,
+  answer_key file existence, and content_hash mismatches. Runs
+  @inklyre/oes-lint via npx — nothing to install ahead of time.
+inputs:
+  path:
+    description: >-
+      Path (relative to the repo root) to the OES content tree to lint —
+      a directory containing course.json, set.json, module.json, or
+      lesson.json.
+    required: true
+  entry:
+    description: >-
+      Force a specific entry file instead of auto-detecting it from
+      `path` (one of course.json, set.json, module.json, lesson.json).
+    required: false
+    default: ""
+  version:
+    description: 'The @inklyre/oes-lint version to run, e.g. "0.1.0". Defaults to latest.'
+    required: false
+    default: "latest"
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      run: |
+        set -eu
+        args=(lint "${{ inputs.path }}")
+        if [ -n "${{ inputs.entry }}" ]; then
+          args+=(--entry "${{ inputs.entry }}")
+        fi
+        npx --yes "@inklyre/oes-lint@${{ inputs.version }}" "${args[@]}"

@@ -1,0 +1,20 @@
+{
+  "oqf_version": "0.2.0",
+  "id": "q1",
+  "type": "mcq",
+  "title": "Question One",
+  "statement": "What is 2 + 2?",
+  "type_config": {
+    "options": [
+      {
+        "id": "a",
+        "content": "3"
+      },
+      {
+        "id": "b",
+        "content": "4"
+      }
+    ],
+    "answer": "b"
+  }
+}

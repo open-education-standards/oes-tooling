@@ -1,0 +1,20 @@
+{
+  "oqf_version": "0.2.0",
+  "id": "dup-a",
+  "type": "mcq",
+  "title": "Bad MCQ",
+  "statement": "Pick one.",
+  "type_config": {
+    "options": [
+      {
+        "id": "a",
+        "content": "First"
+      },
+      {
+        "id": "a",
+        "content": "Duplicate of first"
+      }
+    ],
+    "answer": "z"
+  }
+}

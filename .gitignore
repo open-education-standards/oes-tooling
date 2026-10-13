@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+
+# Fetched from the spec repo at build time — see packages/schemas/scripts/fetch-schemas.mjs
+packages/schemas/vendor/
+
+# Personal/internal reference notes — not meant for the public repo.
+planning/

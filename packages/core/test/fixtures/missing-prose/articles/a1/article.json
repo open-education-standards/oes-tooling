@@ -1,0 +1,6 @@
+{
+  "oaf_version": "0.2.0",
+  "id": "a1",
+  "title": "Article with a dangling content reference",
+  "content": { "file": "content.md" }
+}

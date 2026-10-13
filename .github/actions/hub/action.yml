@@ -1,0 +1,58 @@
+name: "OES Hub"
+description: >-
+  Check or build a static OES hub with the oes-hub CLI. "check" validates the
+  hub and every unpublished version and writes nothing (for pull requests);
+  "build" publishes new versions to store/ and generates the site (for main).
+  Builds the CLI from this repo, so it works before @inklyre/oes-hub is on npm.
+inputs:
+  command:
+    description: '"check" or "build".'
+    required: true
+  hub-path:
+    description: Path to the hub (the folder with hub.json), relative to the workspace.
+    required: false
+    default: "."
+  out:
+    description: Where "build" writes the site.
+    required: false
+    default: "_site"
+  tooling-ref:
+    description: The oes-tooling ref to build the CLI from.
+    required: false
+    default: "main"
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v7
+      with:
+        repository: open-education-standards/oes-tooling
+        ref: ${{ inputs.tooling-ref }}
+        path: .oes-tooling
+
+    - uses: actions/setup-node@v7
+      with:
+        node-version: 24
+        cache: npm
+        cache-dependency-path: .oes-tooling/package-lock.json
+
+    - name: Build oes-hub
+      shell: bash
+      working-directory: .oes-tooling
+      run: |
+        npm ci
+        npm run build:deps-of -- @inklyre/oes-hub
+        npm run build --workspace @inklyre/oes-hub
+
+    - name: Run oes-hub ${{ inputs.command }}
+      shell: bash
+      env:
+        COMMAND: ${{ inputs.command }}
+        HUB_PATH: ${{ inputs.hub-path }}
+        OUT: ${{ inputs.out }}
+      run: |
+        set -eu
+        case "$COMMAND" in
+          check) node .oes-tooling/packages/hub/dist/cli.js check "$HUB_PATH" ;;
+          build) node .oes-tooling/packages/hub/dist/cli.js build "$HUB_PATH" --out "$OUT" ;;
+          *) echo "command must be check or build, got: $COMMAND" >&2; exit 1 ;;
+        esac

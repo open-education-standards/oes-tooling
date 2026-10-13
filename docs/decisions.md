@@ -79,6 +79,17 @@ compile back to the input.
 data, ships no CSS and does no fetching, so it fits into any app's design
 and data layer.
 
+**The hub generator is a library first.** `@inklyre/oes-hub` does the work
+(fetch a tagged release, check it, bundle it, store it, generate the
+site) and the `oes-hub` CLI and GitHub Action are thin wrappers, so a hub
+server could later reuse the same code. A hub's `store/` keeps every
+published version exactly as published, so moving or deleting a git tag,
+or the whole source repository, never changes a release.
+
+**Bundling and digests live in `oes-core`.** They are defined by the spec
+and needed by more than the hub (Studio's export, for one), so there is
+one implementation, tested against the spec's own `sha256sum` recipe.
+
 **Importers share one CLI shell.** `oes import <source>` is the pattern; the
 YouTube importer is the first source, and others reuse the same shell.
 

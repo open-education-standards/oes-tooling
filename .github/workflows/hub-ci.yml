@@ -1,0 +1,52 @@
+name: "@inklyre/oes-hub CI"
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "packages/lint/**"
+      - "packages/authoring/**"
+      - "packages/import-youtube/**"
+      - "packages/hub/**"
+      - "packages/core/**"
+      - "packages/schemas/**"
+      - "scripts/build-workspaces.mjs"
+      - ".github/workflows/hub-ci.yml"
+  pull_request:
+    paths:
+      - "packages/lint/**"
+      - "packages/authoring/**"
+      - "packages/import-youtube/**"
+      - "packages/hub/**"
+      - "packages/core/**"
+      - "packages/schemas/**"
+      - "scripts/build-workspaces.mjs"
+      - ".github/workflows/hub-ci.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build workspace dependencies, in dependency order
+        run: npm run build:deps-of -- @inklyre/oes-hub
+
+      - name: Typecheck
+        run: npm run typecheck --workspace @inklyre/oes-hub
+
+      - name: Lint
+        run: npm run lint --workspace @inklyre/oes-hub
+
+      - name: Test
+        run: npm run test --workspace @inklyre/oes-hub
+
+      - name: Build
+        run: npm run build --workspace @inklyre/oes-hub

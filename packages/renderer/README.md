@@ -1,9 +1,8 @@
 # @inklyre/oes-renderer
 
 React components that render [OES](https://github.com/open-education-standards/oes)
-content. Starting scope, matching what the YouTube importer already
-produces: a video lesson and a course outline. More content types and
-OQF's question types follow.
+content. Questions of every type, articles, video lessons (including YouTube) and
+course outlines, plus OES-flavoured Markdown with maths.
 
 ## Install
 
@@ -26,6 +25,44 @@ npm install @inklyre/oes-renderer
   stay separate, so these components work the same in Node/SSR, tests,
   and the browser regardless of how you fetched/resolved the content.
 
+## Markdown and maths
+
+Prose renders through `<Markdown>`, following OES's Markdown Conventions:
+CommonMark plus GFM tables, strikethrough and task lists, with `$…$` and
+`$$…$$` maths tokenised before inline Markdown (so `_` and `\\` inside
+maths are never mangled). Raw HTML is not rendered, and unsafe link
+schemes are removed. Maths uses KaTeX: include its stylesheet yourself,
+e.g. `import "katex/dist/katex.min.css"`.
+
+Every component that renders prose takes an optional `resolveUrl`, which
+turns a relative image or link URL into a loadable one (for example,
+against the URL of the bundle the content came from).
+
+## `<QuestionView>`
+
+Renders any of OQF's 11 question types: stimulus, statement, hints, an
+input for the learner's response, and, once you pass `result`, feedback
+and the explanation. It is controlled: keep the response in your own
+state, and check it with `checkResponse()` from `@inklyre/oes-core`.
+
+```tsx
+const [response, setResponse] = useState<QuestionResponse>();
+const [result, setResult] = useState<CheckResult>();
+
+<QuestionView question={q} response={response} onResponse={setResponse} result={result} />
+<button onClick={() => setResult(checkResponse(q, response))}>Check</button>
+```
+
+Fill-in-the-blank markers (`{{b1}}`) become inputs in place, ordering
+uses up/down buttons rather than drag and drop, and shuffled options stay
+in the same order for a given `shuffleSeed`. Secured questions, `code`,
+and person-graded types say why they can't be checked in the browser.
+
+## `<ArticleView>`
+
+Renders an article's title and Markdown body. `content` must already be a
+string, as `resolve()` and bundles guarantee.
+
 ## `<VideoPlayer>`
 
 ```tsx
@@ -34,7 +71,7 @@ import { VideoPlayer } from "@inklyre/oes-renderer";
 <VideoPlayer video={resolvedVideoLesson.video} />;
 ```
 
-Renders the video (`<video src={video_url}>`), a chapter list that seeks
+Renders the video (a privacy-enhanced YouTube embed for YouTube URLs, otherwise `<video src={video_url}>`), a chapter list that seeks
 the player on click when `video.chapters` is present, and a `<track>`
 per caption — but only for `captions[].url` entries. A `path` caption is
 relative to that video's own `video.json` and has no meaning without the

@@ -1,4 +1,10 @@
-export { VideoPlayer } from "./VideoPlayer.js";
+export { VideoPlayer, youtubeId } from "./VideoPlayer.js";
 export type { VideoPlayerProps } from "./VideoPlayer.js";
 export { CourseOutline } from "./CourseOutline.js";
 export type { CourseOutlineProps } from "./CourseOutline.js";
+export { Markdown } from "./Markdown.js";
+export type { MarkdownProps } from "./Markdown.js";
+export { QuestionView, seededShuffle } from "./QuestionView.js";
+export type { QuestionViewProps } from "./QuestionView.js";
+export { ArticleView } from "./ArticleView.js";
+export type { ArticleViewProps } from "./ArticleView.js";

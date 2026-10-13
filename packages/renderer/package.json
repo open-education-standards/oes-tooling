@@ -1,7 +1,7 @@
 {
   "name": "@inklyre/oes-renderer",
   "version": "0.1.0",
-  "description": "React components that render OES content \u2014 a video lesson (chapters, captions) and a course outline to start, more content/question types to follow. Headless: semantic markup and stable className hooks, no bundled CSS.",
+  "description": "React components that render OES content — a video lesson (chapters, captions) and a course outline to start, more content/question types to follow. Headless: semantic markup and stable className hooks, no bundled CSS.",
   "license": "Apache-2.0",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -30,7 +30,12 @@
     "react": "^18.0.0 || ^19.0.0"
   },
   "dependencies": {
-    "@inklyre/oes-core": "^0.4.0"
+    "@inklyre/oes-core": "^0.4.0",
+    "react-markdown": "^10.1.0",
+    "rehype-katex": "^7.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0",
+    "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.18.0",

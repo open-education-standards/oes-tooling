@@ -149,6 +149,20 @@ describe("VideoPlayer with YouTube and relative captions", () => {
   });
 });
 
+describe("heading structure", () => {
+  it("drops a leading heading that repeats the article title, and nests the rest under it", () => {
+    const { container } = render(
+      <ArticleView article={{ oaf_version: "0.2.0", id: "a", title: "Hello", content: "# Hello\n\nIntro.\n\n## Part one\n\nText." }} />,
+    );
+    expect(Array.from(container.querySelectorAll("h1,h2,h3,h4")).map((h) => `${h.tagName}:${h.textContent}`)).toEqual(["H2:Hello", "H4:Part one"]);
+  });
+
+  it("keeps a leading heading that isn't the title", () => {
+    const { container } = render(<ArticleView article={{ oaf_version: "0.2.0", id: "a", title: "Hello", content: "# Something else\n\nText." }} />);
+    expect(container.querySelector("h3")?.textContent).toBe("Something else");
+  });
+});
+
 describe("ArticleView", () => {
   it("renders the title and the Markdown body", () => {
     const { container } = render(

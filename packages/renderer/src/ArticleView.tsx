@@ -10,12 +10,15 @@ export interface ArticleViewProps {
 
 /** Renders one OAF article: its title and its Markdown body. Headless. */
 export function ArticleView({ article, resolveUrl }: ArticleViewProps) {
-  const content = typeof article.content === "string" ? article.content : "";
+  const raw = typeof article.content === "string" ? article.content : "";
+  // Markdown often restates its title as a leading "# Title"; the title is already shown.
+  const leading = raw.match(/^\s*#\s+(.+?)\s*#*\s*(?:\r?\n|$)/);
+  const content = leading && leading[1]!.trim() === article.title.trim() ? raw.slice(leading[0].length) : raw;
   return (
     <article className="oes-article">
       <h2 className="oes-article__title">{article.title}</h2>
       {article.description && <p className="oes-article__description">{article.description}</p>}
-      <Markdown source={content} resolveUrl={resolveUrl} className="oes-article__body" />
+      <Markdown source={content} resolveUrl={resolveUrl} headingOffset={2} className="oes-article__body" />
     </article>
   );
 }

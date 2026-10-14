@@ -81,7 +81,7 @@ export function QuestionView({ question, stimulus, response, onResponse, result,
   const locked = result !== undefined;
   const seed = shuffleSeed ?? q.id;
   const [hintsShown, setHintsShown] = useState(0);
-  const md = (source: string) => <Markdown source={source} resolveUrl={resolveUrl} />;
+  const md = (source: string) => <Markdown source={source} resolveUrl={resolveUrl} headingOffset={3} />;
   const statement = typeof q.statement === "string" ? q.statement : "";
   const name = `oes-q-${q.id}`;
 
@@ -375,7 +375,7 @@ export function QuestionView({ question, stimulus, response, onResponse, result,
         </section>
       )}
       <div className="oes-question__statement">
-        <Markdown source={statement} resolveUrl={resolveUrl} renderBlank={fillBlankInputs} />
+        <Markdown source={statement} resolveUrl={resolveUrl} renderBlank={fillBlankInputs} headingOffset={3} />
       </div>
       {input}
       {hints.length > 0 && !locked && (

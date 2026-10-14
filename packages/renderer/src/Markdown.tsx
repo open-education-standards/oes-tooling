@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { JSX, ReactNode } from "react";
 import ReactMarkdown, { defaultUrlTransform, type Components } from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
@@ -20,6 +20,11 @@ export interface MarkdownProps {
    * markers are shown as plain text.
    */
   renderBlank?: (id: string) => ReactNode;
+  /**
+   * Demotes headings by this many levels (capped at h6), so prose headings
+   * nest under the headings around it: with 2, `#` renders as `<h3>`.
+   */
+  headingOffset?: number;
   className?: string;
 }
 
@@ -61,12 +66,17 @@ const isRelative = (url: string) => url !== "" && !/^[a-z][a-z0-9+.-]*:/i.test(u
  * KaTeX's stylesheet (`katex/dist/katex.min.css`), which this headless
  * component does not include.
  */
-export function Markdown({ source, resolveUrl, renderBlank, className = "oes-markdown" }: MarkdownProps) {
-  const components = renderBlank
-    ? ({
-        "oes-blank": (props: { "data-blank-id"?: string }) => <>{renderBlank(props["data-blank-id"] ?? "")}</>,
-      } as unknown as Components)
-    : undefined;
+export function Markdown({ source, resolveUrl, renderBlank, headingOffset = 0, className = "oes-markdown" }: MarkdownProps) {
+  const components: Record<string, unknown> = {};
+  if (renderBlank) {
+    components["oes-blank"] = (props: { "data-blank-id"?: string }) => <>{renderBlank(props["data-blank-id"] ?? "")}</>;
+  }
+  if (headingOffset > 0) {
+    for (let level = 1; level <= 6; level++) {
+      const Tag = `h${Math.min(6, level + headingOffset)}` as "h1";
+      components[`h${level}`] = ({ node: _node, ...props }: { node?: unknown } & JSX.IntrinsicElements["h1"]) => <Tag {...props} />;
+    }
+  }
   return (
     <div className={className}>
       <ReactMarkdown
@@ -76,7 +86,7 @@ export function Markdown({ source, resolveUrl, renderBlank, className = "oes-mar
           const safe = defaultUrlTransform(url);
           return safe && resolveUrl && isRelative(safe) ? resolveUrl(safe) : safe;
         }}
-        components={components}
+        components={components as Components}
       >
         {source}
       </ReactMarkdown>

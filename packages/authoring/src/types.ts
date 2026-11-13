@@ -1,4 +1,4 @@
-import type { OqfQuestion } from "@inklyre/oes-core";
+import type { OqfQuestion } from "@open-education-standards/core";
 
 /** The OQF version a compiled document is stamped with when frontmatter omits one. */
 export const DEFAULT_OQF_VERSION = "0.2.0";

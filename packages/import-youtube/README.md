@@ -1,19 +1,19 @@
-# @inklyre/oes-import-youtube
+# @open-education-standards/import-youtube
 
 Converts a YouTube playlist into [OES](https://github.com/open-education-standards/oes) content: one
 OCF module (the playlist), one lesson per video, each lesson holding
 exactly that video as its `items[]` entry — plus the corresponding OVF
 `video.json` for each one. Library only; the `oes import youtube` CLI
-built on this lives in [`@inklyre/oes-lint`](../lint), which anticipated
+built on this lives in [`@open-education-standards/lint`](../lint), which anticipated
 growing into a general `oes` binary from the start.
 
 ## Install
 
 ```bash
-npm install -D @inklyre/oes-import-youtube
+npm install -D @open-education-standards/import-youtube
 ```
 
-## CLI (via `@inklyre/oes-lint`'s `oes` binary)
+## CLI (via `@open-education-standards/lint`'s `oes` binary)
 
 ```bash
 # Fetch + plan + generate in one step
@@ -86,7 +86,7 @@ rights to, which an embedded third-party YouTube video never is.
 ## Programmatic API
 
 ```ts
-import { fetchYoutubePlaylist, planYoutubeImport, generateFromPlan } from "@inklyre/oes-import-youtube";
+import { fetchYoutubePlaylist, planYoutubeImport, generateFromPlan } from "@open-education-standards/import-youtube";
 
 const playlist = await fetchYoutubePlaylist(playlistUrl, apiKey);
 const plan = await planYoutubeImport(playlist);

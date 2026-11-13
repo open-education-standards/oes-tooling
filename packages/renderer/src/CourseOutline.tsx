@@ -1,4 +1,4 @@
-import type { OcfLesson, OcfModule, ResolvedCourse, ResolvedLessonItem } from "@inklyre/oes-core";
+import type { OcfLesson, OcfModule, ResolvedCourse, ResolvedLessonItem } from "@open-education-standards/core";
 
 export interface CourseOutlineProps {
   course: ResolvedCourse;

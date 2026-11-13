@@ -1,8 +1,8 @@
-name: "@inklyre/oes-schemas sync + publish"
+name: "@open-education-standards/schemas sync + publish"
 
 # Polls the public spec repo (github.com/open-education-standards/oes) for schema changes
-# and publishes a new patch of @inklyre/oes-schemas when they're found,
-# followed by a new patch of @inklyre/oes-core, which builds them in.
+# and publishes a new patch of @open-education-standards/schemas when they're found,
+# followed by a new patch of @open-education-standards/core, which builds them in.
 # Deliberately schedule/dispatch-triggered rather than push-triggered from
 # oes's side — oes never needs any credential or workflow that reaches
 # into this repo; this repo does all the work, using only read access to
@@ -51,10 +51,10 @@ jobs:
       - name: Verify
         if: steps.check.outputs.changed == 'true'
         run: |
-          npm run typecheck --workspace @inklyre/oes-schemas
-          npm run lint --workspace @inklyre/oes-schemas
-          npm run test --workspace @inklyre/oes-schemas
-          npm run build --workspace @inklyre/oes-schemas
+          npm run typecheck --workspace @open-education-standards/schemas
+          npm run lint --workspace @open-education-standards/schemas
+          npm run test --workspace @open-education-standards/schemas
+          npm run build --workspace @open-education-standards/schemas
 
       - name: Bump patch version
         if: steps.check.outputs.changed == 'true'
@@ -75,7 +75,7 @@ jobs:
           node -e "
             const fs = require('fs');
             const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
-            pkg.devDependencies['@inklyre/oes-schemas'] = '^${{ steps.bump.outputs.version }}';
+            pkg.devDependencies['@open-education-standards/schemas'] = '^${{ steps.bump.outputs.version }}';
             fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
           "
           echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
@@ -88,10 +88,10 @@ jobs:
       - name: Build schemas, then verify and build oes-core
         if: steps.check.outputs.changed == 'true'
         run: |
-          npm run build --workspace @inklyre/oes-schemas
-          npm run typecheck --workspace @inklyre/oes-core
-          npm run test --workspace @inklyre/oes-core
-          npm run build --workspace @inklyre/oes-core
+          npm run build --workspace @open-education-standards/schemas
+          npm run typecheck --workspace @open-education-standards/core
+          npm run test --workspace @open-education-standards/core
+          npm run build --workspace @open-education-standards/core
 
       - name: Record new content hash
         if: steps.check.outputs.changed == 'true'
@@ -104,7 +104,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add packages/schemas/package.json packages/schemas/.content-hash packages/core/package.json package-lock.json
-          git commit -m "chore: auto-publish @inklyre/oes-schemas ${{ steps.bump.outputs.version }} and @inklyre/oes-core ${{ steps.bump_core.outputs.version }}"
+          git commit -m "chore: auto-publish @open-education-standards/schemas ${{ steps.bump.outputs.version }} and @open-education-standards/core ${{ steps.bump_core.outputs.version }}"
           git push
 
       - name: Publish oes-schemas to npm

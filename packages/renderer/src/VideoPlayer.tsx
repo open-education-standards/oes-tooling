@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import type { VideoHTMLAttributes } from "react";
-import type { OvfChapter, OvfVideo } from "@inklyre/oes-core";
+import type { OvfChapter, OvfVideo } from "@open-education-standards/core";
 
 export interface VideoPlayerProps {
   video: OvfVideo;

@@ -1,6 +1,6 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
-import type { OvfVideo } from "@inklyre/oes-core";
+import type { OvfVideo } from "@open-education-standards/core";
 import { VideoPlayer } from "../src/VideoPlayer.js";
 
 afterEach(cleanup);

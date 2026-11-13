@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest";
 import { validate, type DocumentType } from "../src/validate.js";
 
 // Walks the conformance fixtures under test/fixtures/ (a copy of the spec
-// repo's conformance/ — see fixtures/README.md), through @inklyre/oes-core's
+// repo's conformance/ — see fixtures/README.md), through @open-education-standards/core's
 // own validate() instead of a fresh ajv instance. This is what keeps the
 // hand-written types and this package's validator honest against the real
 // schemas — a schema change with no matching type update shows up here as

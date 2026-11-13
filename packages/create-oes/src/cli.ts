@@ -1,5 +1,5 @@
-import { fsSource } from "@inklyre/oes-core";
-import { lintCourse } from "@inklyre/oes-lint";
+import { fsSource } from "@open-education-standards/core";
+import { lintCourse } from "@open-education-standards/lint";
 import { generateScaffold } from "./generate.js";
 
 function printUsage(): void {

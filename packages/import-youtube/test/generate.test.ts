@@ -1,7 +1,7 @@
 import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { fsSource, resolveModule } from "@inklyre/oes-core";
+import { fsSource, resolveModule } from "@open-education-standards/core";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { generateFromPlan } from "../src/generate.js";
 import { planYoutubeImport, type ImportPlan } from "../src/plan.js";
@@ -47,7 +47,7 @@ async function readJson(path: string): Promise<unknown> {
 }
 
 describe("generateFromPlan", () => {
-  it("produces a tree @inklyre/oes-core's resolveModule can walk end-to-end with no errors", async () => {
+  it("produces a tree @open-education-standards/core's resolveModule can walk end-to-end with no errors", async () => {
     const plan = await planYoutubeImport(playlist);
     await generateFromPlan(plan, dir);
 

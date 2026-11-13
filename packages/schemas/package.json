@@ -1,5 +1,5 @@
 {
-  "name": "@inklyre/oes-schemas",
+  "name": "@open-education-standards/schemas",
   "version": "0.1.2",
   "description": "The JSON Schemas for OES (Open Education Standards), fetched from the spec repo (github.com/open-education-standards/oes) and packaged for npm consumption.",
   "license": "CC-BY-4.0",

@@ -1,5 +1,5 @@
 {
-  "name": "@inklyre/oes-hub",
+  "name": "@open-education-standards/hub",
   "version": "0.1.0",
   "description": "Build and check a static OES hub: a set of files listing OPK packages that anyone can browse and import. Library plus the `oes-hub` CLI.",
   "license": "Apache-2.0",
@@ -30,8 +30,8 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@inklyre/oes-core": "^0.3.1",
-    "@inklyre/oes-lint": "^0.2.1",
+    "@open-education-standards/core": "^0.3.1",
+    "@open-education-standards/lint": "^0.2.1",
     "yaml": "^2.9.0"
   },
   "devDependencies": {

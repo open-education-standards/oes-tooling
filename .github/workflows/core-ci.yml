@@ -1,4 +1,4 @@
-name: "@inklyre/oes-core CI"
+name: "@open-education-standards/core CI"
 
 on:
   push:
@@ -29,16 +29,16 @@ jobs:
       - run: npm ci
 
       - name: Build workspace dependencies, in dependency order
-        run: npm run build:deps-of -- @inklyre/oes-core
+        run: npm run build:deps-of -- @open-education-standards/core
 
       - name: Typecheck
-        run: npm run typecheck --workspace @inklyre/oes-core
+        run: npm run typecheck --workspace @open-education-standards/core
 
       - name: Lint
-        run: npm run lint --workspace @inklyre/oes-core
+        run: npm run lint --workspace @open-education-standards/core
 
       - name: Test
-        run: npm run test --workspace @inklyre/oes-core
+        run: npm run test --workspace @open-education-standards/core
 
       - name: Build
-        run: npm run build --workspace @inklyre/oes-core
+        run: npm run build --workspace @open-education-standards/core

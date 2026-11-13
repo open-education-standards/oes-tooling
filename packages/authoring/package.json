@@ -1,5 +1,5 @@
 {
-  "name": "@inklyre/oes-authoring",
+  "name": "@open-education-standards/authoring",
   "version": "0.2.0",
   "description": "The `.oes.md` authoring format for OES questions: compile Markdown-with-frontmatter into canonical question.json, and decompile canonical JSON back into authorable Markdown.",
   "license": "Apache-2.0",
@@ -27,7 +27,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@inklyre/oes-core": "^0.3.1",
+    "@open-education-standards/core": "^0.3.1",
     "yaml": "^2.9.0"
   },
   "devDependencies": {

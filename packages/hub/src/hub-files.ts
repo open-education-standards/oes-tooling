@@ -6,7 +6,7 @@
 import { existsSync } from "node:fs";
 import { readdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
-import type { OpkPackage } from "@inklyre/oes-core";
+import type { OpkPackage } from "@open-education-standards/core";
 import { parse as parseYaml } from "yaml";
 
 export const NAME_SEGMENT = /^[a-z0-9]+(-[a-z0-9]+)*$/;

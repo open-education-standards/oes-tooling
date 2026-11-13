@@ -1,4 +1,4 @@
-# @inklyre/oes-renderer
+# @open-education-standards/renderer
 
 React components that render [OES](https://github.com/open-education-standards/oes)
 content. Questions of every type, articles, video lessons (including YouTube) and
@@ -7,7 +7,7 @@ course outlines, plus OES-flavoured Markdown with maths.
 ## Install
 
 ```bash
-npm install @inklyre/oes-renderer
+npm install @open-education-standards/renderer
 ```
 
 `react` (18 or 19) is a peer dependency — bring your own.
@@ -20,7 +20,7 @@ npm install @inklyre/oes-renderer
   however your product already styles things — this library never
   imposes a visual design.
 - **Already-resolved data in, no fetching.** Components take the plain
-  objects [`@inklyre/oes-core`](../core)'s `resolve()` already produces
+  objects [`@open-education-standards/core`](../core)'s `resolve()` already produces
   (`OvfVideo`, `ResolvedCourse`) as props. Rendering and data-fetching
   stay separate, so these components work the same in Node/SSR, tests,
   and the browser regardless of how you fetched/resolved the content.
@@ -43,7 +43,7 @@ against the URL of the bundle the content came from).
 Renders any of OQF's 11 question types: stimulus, statement, hints, an
 input for the learner's response, and, once you pass `result`, feedback
 and the explanation. It is controlled: keep the response in your own
-state, and check it with `checkResponse()` from `@inklyre/oes-core`.
+state, and check it with `checkResponse()` from `@open-education-standards/core`.
 
 ```tsx
 const [response, setResponse] = useState<QuestionResponse>();
@@ -66,7 +66,7 @@ string, as `resolve()` and bundles guarantee.
 ## `<VideoPlayer>`
 
 ```tsx
-import { VideoPlayer } from "@inklyre/oes-renderer";
+import { VideoPlayer } from "@open-education-standards/renderer";
 
 <VideoPlayer video={resolvedVideoLesson.video} />;
 ```
@@ -83,8 +83,8 @@ need it rendered. Pass `videoProps` to override or extend the underlying
 ## `<CourseOutline>`
 
 ```tsx
-import { CourseOutline } from "@inklyre/oes-renderer";
-import { resolveCourse, fsSource } from "@inklyre/oes-core";
+import { CourseOutline } from "@open-education-standards/renderer";
+import { resolveCourse, fsSource } from "@open-education-standards/core";
 
 const { data: course } = await resolveCourse(fsSource("./my-course"));
 

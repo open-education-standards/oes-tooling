@@ -1,4 +1,4 @@
-# @inklyre/oes-hub
+# @open-education-standards/hub
 
 Build and check a static [OES hub](https://open-education-standards.github.io/oes/specs/opk/hubs):
 a folder of files, served over HTTPS, that lists OPK packages so anyone can

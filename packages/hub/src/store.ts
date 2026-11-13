@@ -7,7 +7,7 @@
  */
 import { copyFile, mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
-import { packageDigest, sha256Hex } from "@inklyre/oes-core";
+import { packageDigest, sha256Hex } from "@open-education-standards/core";
 import type { StoreMeta, StoredVersion } from "./hub-files.js";
 import type { Issue, PreparedVersion } from "./prepare.js";
 

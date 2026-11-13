@@ -3,7 +3,7 @@ description: >-
   Lint an OES content tree for referential integrity: dangling references,
   duplicate ids, pool select bounds, dangling answer cross-references,
   answer_key file existence, and content_hash mismatches. Runs
-  @inklyre/oes-lint via npx — nothing to install ahead of time.
+  @open-education-standards/lint via npx — nothing to install ahead of time.
 inputs:
   path:
     description: >-
@@ -18,7 +18,7 @@ inputs:
     required: false
     default: ""
   version:
-    description: 'The @inklyre/oes-lint version to run, e.g. "0.1.0". Defaults to latest.'
+    description: 'The @open-education-standards/lint version to run, e.g. "0.1.0". Defaults to latest.'
     required: false
     default: "latest"
 runs:
@@ -31,4 +31,4 @@ runs:
         if [ -n "${{ inputs.entry }}" ]; then
           args+=(--entry "${{ inputs.entry }}")
         fi
-        npx --yes "@inklyre/oes-lint@${{ inputs.version }}" "${args[@]}"
+        npx --yes "@open-education-standards/lint@${{ inputs.version }}" "${args[@]}"

@@ -1,6 +1,6 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import type { ResolvedCourse } from "@inklyre/oes-core";
+import type { ResolvedCourse } from "@open-education-standards/core";
 import { CourseOutline } from "../src/CourseOutline.js";
 
 afterEach(cleanup);

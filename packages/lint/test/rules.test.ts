@@ -4,7 +4,7 @@ import { checkUniqueIds } from "../src/rules/unique-ids.js";
 import { checkIdExists, checkPermutation } from "../src/rules/answer-references.js";
 import { checkPoolBounds } from "../src/rules/pool-bounds.js";
 import { checkGroupStimulusAgreement, checkGroupStructure } from "../src/rules/group-structure.js";
-import type { OpfGroupQuestionEntry } from "@inklyre/oes-core";
+import type { OpfGroupQuestionEntry } from "@open-education-standards/core";
 
 describe("checkUniqueIds", () => {
   it("reports nothing for all-unique ids", () => {

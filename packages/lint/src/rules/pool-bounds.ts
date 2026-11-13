@@ -1,4 +1,4 @@
-import type { OpfPoolQuestionEntry } from "@inklyre/oes-core";
+import type { OpfPoolQuestionEntry } from "@open-education-standards/core";
 import type { LintIssue } from "../types.js";
 import { checkUniqueIds } from "./unique-ids.js";
 

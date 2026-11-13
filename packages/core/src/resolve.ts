@@ -78,7 +78,7 @@ export interface ResolvedQuestion {
   stimulus?: OqfStimulus;
   /**
    * A {@link ContentSource} rooted at this question's own directory —
-   * deliberately exposed so a caller (e.g. `@inklyre/oes-lint` checking
+   * deliberately exposed so a caller (e.g. `@open-education-standards/lint` checking
    * `answer_key.file` exists) can fetch something relative to the question
    * itself. `resolve()` never fetches `answer_key` content: a public,
    * student-facing consumer built on `resolveCourse`/`resolveSet` must

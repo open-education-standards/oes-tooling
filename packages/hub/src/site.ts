@@ -14,10 +14,10 @@ import {
   type OpkHubPackage,
   type OpkHubPackageSummary,
   type OpkPublishedVersion,
-} from "@inklyre/oes-core";
+} from "@open-education-standards/core";
 import type { HubConfig, PackageSource, StoredVersion } from "./hub-files.js";
 import { indexPage, packagePage, SEARCH_JS, STYLE_CSS } from "./html.js";
-import { compareSemver } from "@inklyre/oes-core";
+import { compareSemver } from "@open-education-standards/core";
 
 function checked<T>(docType: DocumentType, doc: T, what: string): T {
   const result = validate(docType, doc);

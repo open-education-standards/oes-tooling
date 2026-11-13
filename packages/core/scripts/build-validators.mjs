@@ -5,14 +5,14 @@
 // Policy (no `unsafe-eval`) refuses; the generated code needs no eval, only
 // ajv's small runtime helpers and ajv-formats' format functions.
 //
-// Reads the schemas from the built @inklyre/oes-schemas, so that package has to
+// Reads the schemas from the built @open-education-standards/schemas, so that package has to
 // be built first (build-workspaces.mjs does that).
 import { mkdir, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
 import standaloneCode from "ajv/dist/standalone/index.js";
-import { schemas } from "@inklyre/oes-schemas";
+import { schemas } from "@open-education-standards/schemas";
 
 const OUT_DIR = new URL("../src/generated/", import.meta.url);
 const OUT = fileURLToPath(new URL("validators.js", OUT_DIR));

@@ -1,4 +1,4 @@
-# @inklyre/oes-authoring
+# @open-education-standards/authoring
 
 The `.oes.md` authoring format for OES questions — Markdown prose with YAML
 frontmatter — and the compiler that turns it into canonical `question.json`.
@@ -10,15 +10,15 @@ uses OQF's own field names, unchanged, so a field added to the spec works
 here without a change to this package.
 
 ```bash
-npm install @inklyre/oes-authoring
+npm install @open-education-standards/authoring
 ```
 
-The CLI ships in [`@inklyre/oes-lint`](../lint):
+The CLI ships in [`@open-education-standards/lint`](../lint):
 
 ```bash
-npx @inklyre/oes-lint compile   ./questions          # .oes.md  -> question.json
-npx @inklyre/oes-lint decompile ./questions          # question.json -> .oes.md
-npx @inklyre/oes-lint compile   ./questions --check  # CI: fail if output is stale
+npx @open-education-standards/lint compile   ./questions          # .oes.md  -> question.json
+npx @open-education-standards/lint decompile ./questions          # question.json -> .oes.md
+npx @open-education-standards/lint compile   ./questions --check  # CI: fail if output is stale
 ```
 
 ## The format
@@ -134,7 +134,7 @@ Windows checkout behave identically to a POSIX one.
 ## API
 
 ```ts
-import { compileQuestion, decompileQuestion } from "@inklyre/oes-authoring";
+import { compileQuestion, decompileQuestion } from "@open-education-standards/authoring";
 
 const { question, files } = compileQuestion(source, { id: "binary-search" });
 // files: [{ path: "question.json", content }, ...a prose file, if declared]

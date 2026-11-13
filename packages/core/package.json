@@ -1,5 +1,5 @@
 {
-  "name": "@inklyre/oes-core",
+  "name": "@open-education-standards/core",
   "version": "0.3.1",
   "description": "Types, schema validation, and reference resolution for OES (Open Education Standards) content.",
   "license": "Apache-2.0",
@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.18.0",
-    "@inklyre/oes-schemas": "^0.1.2",
+    "@open-education-standards/schemas": "^0.1.2",
     "@types/node": "^22.10.5",
     "esbuild": "^0.27.7",
     "eslint": "^9.18.0",

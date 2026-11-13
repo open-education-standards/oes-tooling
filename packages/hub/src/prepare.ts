@@ -17,8 +17,8 @@ import {
   validate,
   type OpkFileEntry,
   type OpkPackage,
-} from "@inklyre/oes-core";
-import { lintCourse, lintSet, type LintResult } from "@inklyre/oes-lint";
+} from "@open-education-standards/core";
+import { lintCourse, lintSet, type LintResult } from "@open-education-standards/lint";
 
 const run = promisify(execFile);
 

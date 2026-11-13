@@ -1,5 +1,5 @@
-import type { ContentSource } from "@inklyre/oes-core";
-import { resolveCourse, resolveLesson, resolveModule, resolveSet } from "@inklyre/oes-core";
+import type { ContentSource } from "@open-education-standards/core";
+import { resolveCourse, resolveLesson, resolveModule, resolveSet } from "@open-education-standards/core";
 import type { LintIssue, LintResult } from "./types.js";
 import { lintResult } from "./types.js";
 import { lintResolvedCourse, lintResolvedLesson, lintResolvedModule, lintSetContent, resolveErrorsToIssues } from "./tree.js";

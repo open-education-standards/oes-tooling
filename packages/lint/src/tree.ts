@@ -1,4 +1,4 @@
-import { isOpfGroupEntry, isOpfPoolEntry } from "@inklyre/oes-core";
+import { isOpfGroupEntry, isOpfPoolEntry } from "@open-education-standards/core";
 import type {
   OpfSet,
   ResolvedCourse,
@@ -6,7 +6,7 @@ import type {
   ResolvedModule,
   ResolvedQuestion,
   ResolveError,
-} from "@inklyre/oes-core";
+} from "@open-education-standards/core";
 import type { LintIssue } from "./types.js";
 import { lintQuestion } from "./question.js";
 import { checkPoolBounds } from "./rules/pool-bounds.js";

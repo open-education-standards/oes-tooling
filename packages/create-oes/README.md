@@ -55,7 +55,7 @@ current JSON Schema, so opening any of them in an editor with JSON Schema
 support gets inline validation/autocomplete for free — see
 [Editor Setup](https://open-education-standards.github.io/oes/editor-setup).
 
-After writing files, the CLI runs [`@inklyre/oes-lint`](../lint)'s
+After writing files, the CLI runs [`@open-education-standards/lint`](../lint)'s
 `lintCourse` against the output before reporting success — the same
 referential-integrity bar hand-authored content is held to, not just that
 each document individually passed schema validation during generation.

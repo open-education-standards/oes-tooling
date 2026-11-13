@@ -3,7 +3,7 @@ description: >-
   Check or build a static OES hub with the oes-hub CLI. "check" validates the
   hub and every unpublished version and writes nothing (for pull requests);
   "build" publishes new versions to store/ and generates the site (for main).
-  Builds the CLI from this repo, so it works before @inklyre/oes-hub is on npm.
+  Builds the CLI from this repo, so it works before @open-education-standards/hub is on npm.
 inputs:
   command:
     description: '"check" or "build".'
@@ -40,8 +40,8 @@ runs:
       working-directory: .oes-tooling
       run: |
         npm ci
-        npm run build:deps-of -- @inklyre/oes-hub
-        npm run build --workspace @inklyre/oes-hub
+        npm run build:deps-of -- @open-education-standards/hub
+        npm run build --workspace @open-education-standards/hub
 
     - name: Run oes-hub ${{ inputs.command }}
       shell: bash

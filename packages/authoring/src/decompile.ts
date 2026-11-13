@@ -1,5 +1,5 @@
 import { Document, isMap, isScalar, isSeq, visit, type Node } from "yaml";
-import type { OqfQuestion } from "@inklyre/oes-core";
+import type { OqfQuestion } from "@open-education-standards/core";
 import { compileQuestion } from "./compile.js";
 import { DIRECTIVE_COLLECTIONS, renderDirectives, type DirectiveName } from "./directives.js";
 import { normalizeSource } from "./frontmatter.js";

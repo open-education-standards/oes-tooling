@@ -4,7 +4,7 @@ import { existsSync } from "node:fs";
 import { mkdir, mkdtemp, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
-import { validate } from "@inklyre/oes-core";
+import { validate } from "@open-education-standards/core";
 import { afterEach, describe, expect, it } from "vitest";
 import { buildHub, checkHub, compareSemver, namespaceProblem, parsePackageSource } from "../src/index.js";
 

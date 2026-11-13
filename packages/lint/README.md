@@ -1,13 +1,13 @@
-# @inklyre/oes-lint
+# @open-education-standards/lint
 
 Referential-integrity linting for [OES](https://github.com/open-education-standards/oes) content, built on
-[`@inklyre/oes-core`](../core)'s `resolve()` rather than reimplementing a
+[`@open-education-standards/core`](../core)'s `resolve()` rather than reimplementing a
 second tree-walker.
 
 ## Install
 
 ```bash
-npm install -D @inklyre/oes-lint
+npm install -D @open-education-standards/lint
 ```
 
 ## CLI
@@ -83,8 +83,8 @@ doesn't attempt on its own:
 ## Programmatic API
 
 ```ts
-import { fsSource } from "@inklyre/oes-core";
-import { lintCourse } from "@inklyre/oes-lint";
+import { fsSource } from "@open-education-standards/core";
+import { lintCourse } from "@open-education-standards/lint";
 
 const { issues, ok } = await lintCourse(fsSource("./my-course"));
 ```

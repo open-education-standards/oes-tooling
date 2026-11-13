@@ -1,7 +1,7 @@
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import type { OcfLesson, OcfModule, OvfVideo, ValidationResult } from "@inklyre/oes-core";
-import { validateOcfLesson, validateOcfModule, validateOvfVideo } from "@inklyre/oes-core";
+import type { OcfLesson, OcfModule, OvfVideo, ValidationResult } from "@open-education-standards/core";
+import { validateOcfLesson, validateOcfModule, validateOvfVideo } from "@open-education-standards/core";
 import type { ImportPlan, ImportPlanLesson } from "./plan.js";
 
 export interface GenerateOptions {
@@ -79,7 +79,7 @@ function buildModule(plan: ImportPlan): OcfModule {
     lessons: plan.module.lessons.map((lesson) => ({
       id: lesson.id,
       // module.lessons[].path is the lesson's *folder*, not lesson.json
-      // itself — @inklyre/oes-core's resolver appends "/lesson.json" unconditionally
+      // itself — @open-education-standards/core's resolver appends "/lesson.json" unconditionally
       // here (unlike lesson.items[]'s path, which may be a direct file path).
       path: `lessons/${lesson.id}`,
     })),

@@ -1,4 +1,4 @@
-import { isOpfGroupEntry, isOpfPoolEntry, type OpfGroupQuestionEntry, type OpfQuestionEntry } from "@inklyre/oes-core";
+import { isOpfGroupEntry, isOpfPoolEntry, type OpfGroupQuestionEntry, type OpfQuestionEntry } from "@open-education-standards/core";
 import type { LintIssue } from "../types.js";
 
 /**

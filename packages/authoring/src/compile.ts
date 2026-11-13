@@ -1,4 +1,4 @@
-import { validateOqfQuestion, type OqfQuestion } from "@inklyre/oes-core";
+import { validateOqfQuestion, type OqfQuestion } from "@open-education-standards/core";
 import { DIRECTIVE_COLLECTIONS, extractDirectives, type DirectiveBlock } from "./directives.js";
 import { parseFrontmatter, splitDocument } from "./frontmatter.js";
 import {

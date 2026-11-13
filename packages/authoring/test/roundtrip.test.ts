@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import type { OqfQuestion } from "@inklyre/oes-core";
+import type { OqfQuestion } from "@open-education-standards/core";
 import { compileQuestion, decompileQuestion, RoundTripError } from "../src/index.js";
 
 function question(overrides: Record<string, unknown> = {}): OqfQuestion {

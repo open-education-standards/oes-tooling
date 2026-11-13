@@ -5,6 +5,6 @@ directory, as of the `oes`/`oes-tooling` repo split. **Not live-synced** —
 if new conformance fixtures are added to the spec repo later, they need to
 be manually copied here too, or (the better long-term fix, already on the
 roadmap — see `docs/decisions.md`) `oes` publishes
-`conformance/` as its own installable `@inklyre/oes-conformance-fixtures`
-package, the same way `schemas/` became `@inklyre/oes-schemas`, and this
+`conformance/` as its own installable `@open-education-standards/conformance-fixtures`
+package, the same way `schemas/` became `@open-education-standards/schemas`, and this
 directory goes away in favor of a real dependency.

@@ -1,4 +1,4 @@
-import type { ResolvedQuestion } from "@inklyre/oes-core";
+import type { ResolvedQuestion } from "@open-education-standards/core";
 import type { LintIssue } from "../types.js";
 
 /**

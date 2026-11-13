@@ -4,7 +4,7 @@
  * and a small script that filters the package list. The pages work without
  * JavaScript; search is an enhancement.
  */
-import type { OpkBundle, OpkHubPackage, OpkHubPackageSummary, OpkPackage } from "@inklyre/oes-core";
+import type { OpkBundle, OpkHubPackage, OpkHubPackageSummary, OpkPackage } from "@open-education-standards/core";
 import type { HubConfig } from "./hub-files.js";
 
 export function escapeHtml(value: unknown): string {

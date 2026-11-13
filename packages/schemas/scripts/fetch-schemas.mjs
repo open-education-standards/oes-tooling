@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Fetches the current schema JSON directly from the public spec repo
 // (github.com/open-education-standards/oes) into vendor/, which src/index.ts then imports
-// from exactly like a local file. This is what lets @inklyre/oes-schemas
+// from exactly like a local file. This is what lets @open-education-standards/schemas
 // be built and published from this repo without oes needing any publish
 // pipeline of its own — see this package's README.
 import { mkdir, writeFile } from "node:fs/promises";

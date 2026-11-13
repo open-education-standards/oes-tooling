@@ -1,4 +1,4 @@
-# @inklyre/oes-core
+# @open-education-standards/core
 
 Types, schema validation, and reference resolution for [OES](https://github.com/open-education-standards/oes)
 (Open Education Standards) content — the foundation every other OES tool
@@ -7,7 +7,7 @@ is meant to build on rather than reimplement.
 ## Install
 
 ```bash
-npm install @inklyre/oes-core
+npm install @open-education-standards/core
 ```
 
 ## What this does
@@ -49,7 +49,7 @@ npm install @inklyre/oes-core
 ## Usage
 
 ```ts
-import { validateOqfQuestion } from "@inklyre/oes-core";
+import { validateOqfQuestion } from "@open-education-standards/core";
 
 const result = validateOqfQuestion(someJson);
 if (result.valid) {
@@ -61,7 +61,7 @@ if (result.valid) {
 ```
 
 ```ts
-import { fsSource, resolveCourse } from "@inklyre/oes-core";
+import { fsSource, resolveCourse } from "@open-education-standards/core";
 
 const { data, errors } = await resolveCourse(fsSource("./my-course"));
 // data: the full course → module → lesson → article/video/practice-set →
@@ -71,7 +71,7 @@ const { data, errors } = await resolveCourse(fsSource("./my-course"));
 ```
 
 ```ts
-import { urlSource, resolveSet } from "@inklyre/oes-core";
+import { urlSource, resolveSet } from "@open-education-standards/core";
 
 // Same resolver, a URL-rooted source instead — works unchanged in a browser.
 const { data, errors } = await resolveSet(
@@ -85,7 +85,7 @@ const { data, errors } = await resolveSet(
   (e.g. duplicate `id`s across a whole tree, `answer_key` file existence
   independent of whether anything currently references it, `match`/`order`
   answer cross-references, pool `select` ≤ `from.length`) — that's
-  [`@inklyre/oes-lint`](../lint), not this package. `resolve` only reports
+  [`@open-education-standards/lint`](../lint), not this package. `resolve` only reports
   references it actually walked.
 - **Rendering** — turning resolved content into UI is `@oes/renderer`'s
   job (planned), not this package's.

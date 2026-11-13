@@ -1,14 +1,14 @@
 import { existsSync, statSync } from "node:fs";
 import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import { fsSource } from "@inklyre/oes-core";
+import { fsSource } from "@open-education-standards/core";
 import {
   AUTHORED_EXT,
   compileFile,
   decompileFile,
   findAuthored,
   findQuestions,
-} from "@inklyre/oes-authoring";
+} from "@open-education-standards/authoring";
 import {
   fetchYoutubePlaylist,
   generateFromPlan,
@@ -17,7 +17,7 @@ import {
   serializePlan,
   YoutubeApiError,
   type ImportPlan,
-} from "@inklyre/oes-import-youtube";
+} from "@open-education-standards/import-youtube";
 import type { LintResult } from "./types.js";
 import { lintCourse, lintLesson, lintModule, lintSet } from "./index.js";
 

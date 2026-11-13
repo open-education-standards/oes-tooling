@@ -1,5 +1,5 @@
 import { fileURLToPath } from "node:url";
-import { fsSource } from "@inklyre/oes-core";
+import { fsSource } from "@open-education-standards/core";
 import { describe, expect, it } from "vitest";
 import { lintCourse, lintLesson, lintSet } from "../src/index.js";
 

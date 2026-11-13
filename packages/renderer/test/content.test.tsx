@@ -1,7 +1,7 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { useState } from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { checkResponse, type OqfQuestion, type QuestionResponse } from "@inklyre/oes-core";
+import { checkResponse, type OqfQuestion, type QuestionResponse } from "@open-education-standards/core";
 import { ArticleView, Markdown, QuestionView, seededShuffle, VideoPlayer, youtubeId } from "../src/index.js";
 
 afterEach(cleanup);

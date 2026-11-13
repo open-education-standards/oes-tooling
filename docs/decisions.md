@@ -15,19 +15,24 @@ tooling releases move at their own pace.
 including commercially, with an explicit patent grant. Adoption of the
 format matters more than restricting who uses the tools.
 
-**Published under the `@inklyre` npm scope.** The bare `@oes` scope is
-unavailable. The CLI scaffold is unscoped (`create-oes`) because that is
-what `npm create oes` requires.
+**Published under the `@open-education-standards` npm scope.** The bare `@oes`
+scope is unavailable, and a scope of its own keeps the standard independent of
+any company. The packages were first published as `@inklyre/oes-*`; they moved
+to `@open-education-standards/*` with the `oes-` prefix dropped (`core`,
+`schemas`, `lint`, `renderer`, `authoring`, `hub`, `import-youtube`), at the same
+versions. The old `@inklyre` names will be deprecated, pointing to the new ones.
+The CLI scaffold is unscoped (`create-oes`) because that is what `npm create oes`
+requires.
 
 ## How the packages fit together
 
-**Everything builds on `@inklyre/oes-core`.** Types, `validate()` and
+**Everything builds on `@open-education-standards/core`.** Types, `validate()` and
 `resolve()` live in one package, and every other tool wraps it rather than
 re-implementing tree-walking or validation. The first downstream tool
 (the linter) proved the pattern: most of its checks reuse what `resolve()`
 already found.
 
-**Schemas come from the spec repo, not a copy.** `@inklyre/oes-schemas`
+**Schemas come from the spec repo, not a copy.** `@open-education-standards/schemas`
 fetches the current schema files from the spec repo at build time, and a
 daily workflow publishes a new patch when they change. `fetch-schemas`
 compares its list with the spec repo's own record of current schemas and
@@ -76,18 +81,18 @@ publishing.
 `import`), rather than a separate binary per tool.
 
 **The authoring format is a serializer, not a second spec.**
-`@inklyre/oes-authoring`'s Markdown-plus-YAML format uses the spec's own
+`@open-education-standards/authoring`'s Markdown-plus-YAML format uses the spec's own
 field names, so a new spec field works with no compiler change. It is
 versioned as software, not as a spec. It round-trips exactly in both
 directions (`compile --check` and `decompile --check`), and decompiling
 checks its own output and refuses to write anything that would not
 compile back to the input.
 
-**The renderer is headless.** `@inklyre/oes-renderer` takes already-resolved
+**The renderer is headless.** `@open-education-standards/renderer` takes already-resolved
 data, ships no CSS and does no fetching, so it fits into any app's design
 and data layer.
 
-**The hub generator is a library first.** `@inklyre/oes-hub` does the work
+**The hub generator is a library first.** `@open-education-standards/hub` does the work
 (fetch a tagged release, check it, bundle it, store it, generate the
 site) and the `oes-hub` CLI and GitHub Action are thin wrappers, so a hub
 server could later reuse the same code. A hub's `store/` keeps every

@@ -1,4 +1,4 @@
-# @inklyre/oes-schemas
+# @open-education-standards/schemas
 
 The JSON Schemas for [OES](https://github.com/open-education-standards/oes) (Open Education Standards),
 packaged for npm consumption.
@@ -36,18 +36,18 @@ hand, but you can if `vendor/` is stale or missing after a fresh clone.
 ## Install
 
 ```bash
-npm install @inklyre/oes-schemas
+npm install @open-education-standards/schemas
 ```
 
 ## Usage
 
 ```ts
-import { schemas, type DocumentType } from "@inklyre/oes-schemas";
+import { schemas, type DocumentType } from "@open-education-standards/schemas";
 
 schemas["ovf.video"].schema; // the raw video.json JSON Schema
 ```
 
-Most consumers won't need this package directly — [`@inklyre/oes-core`](../core)
+Most consumers won't need this package directly — [`@open-education-standards/core`](../core)
 depends on it and does the actual validation/type work.
 
 ## Publishing

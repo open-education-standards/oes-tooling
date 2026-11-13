@@ -24,7 +24,7 @@ export type OpfDirectQuestionEntry = OpfQuestionEntryBase & ExactlyOne<{ path: s
 export interface OpfPoolQuestionEntry {
   id: string;
   points?: number;
-  /** MUST be <= `from.length` — not enforceable by schema alone, see `@inklyre/oes-core`'s lint tooling. */
+  /** MUST be <= `from.length` — not enforceable by schema alone, see `@open-education-standards/core`'s lint tooling. */
   select: number;
   from: OpfPoolCandidate[];
   shuffle?: boolean;
@@ -65,7 +65,7 @@ export interface OpfGroupQuestionEntry {
    * chooses — deliberately distinct from {@link OpfPoolQuestionEntry.select},
    * where the system picks at random and the learner never sees the rest.
    * MUST be <= `parts.length`; not enforceable by schema alone, see
-   * `@inklyre/oes-lint`. Advisory intent a platform MAY enforce.
+   * `@open-education-standards/lint`. Advisory intent a platform MAY enforce.
    */
   answer_any?: number;
 }

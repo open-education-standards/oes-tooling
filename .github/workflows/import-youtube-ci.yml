@@ -1,4 +1,4 @@
-name: "@inklyre/oes-import-youtube CI"
+name: "@open-education-standards/import-youtube CI"
 
 on:
   push:
@@ -31,16 +31,16 @@ jobs:
       - run: npm ci
 
       - name: Build workspace dependencies, in dependency order
-        run: npm run build:deps-of -- @inklyre/oes-import-youtube
+        run: npm run build:deps-of -- @open-education-standards/import-youtube
 
       - name: Typecheck
-        run: npm run typecheck --workspace @inklyre/oes-import-youtube
+        run: npm run typecheck --workspace @open-education-standards/import-youtube
 
       - name: Lint
-        run: npm run lint --workspace @inklyre/oes-import-youtube
+        run: npm run lint --workspace @open-education-standards/import-youtube
 
       - name: Test
-        run: npm run test --workspace @inklyre/oes-import-youtube
+        run: npm run test --workspace @open-education-standards/import-youtube
 
       - name: Build
-        run: npm run build --workspace @inklyre/oes-import-youtube
+        run: npm run build --workspace @open-education-standards/import-youtube

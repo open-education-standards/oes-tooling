@@ -9,8 +9,8 @@ import {
   validateOcfModule,
   validateOpfSet,
   validateOqfQuestion,
-} from "@inklyre/oes-core";
-import { lintCourse } from "@inklyre/oes-lint";
+} from "@open-education-standards/core";
+import { lintCourse } from "@open-education-standards/lint";
 import { generateScaffold } from "../src/generate.js";
 
 describe("generateScaffold", () => {

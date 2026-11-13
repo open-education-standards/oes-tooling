@@ -1,4 +1,4 @@
-import type { OafArticle } from "@inklyre/oes-core";
+import type { OafArticle } from "@open-education-standards/core";
 import { Markdown } from "./Markdown.js";
 
 export interface ArticleViewProps {

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
-import type { CheckResult, OqfQuestion, OqfStimulus, QuestionResponse } from "@inklyre/oes-core";
+import type { CheckResult, OqfQuestion, OqfStimulus, QuestionResponse } from "@open-education-standards/core";
 import { Markdown } from "./Markdown.js";
 
 export interface QuestionViewProps {
@@ -11,7 +11,7 @@ export interface QuestionViewProps {
   onResponse: (response: QuestionResponse) => void;
   /**
    * The result of checking the response (see `checkResponse` in
-   * `@inklyre/oes-core`). When set, inputs are locked and feedback and the
+   * `@open-education-standards/core`). When set, inputs are locked and feedback and the
    * explanation are shown.
    */
   result?: CheckResult;

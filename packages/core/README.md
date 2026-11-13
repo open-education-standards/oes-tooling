@@ -17,7 +17,9 @@ npm install @inklyre/oes-core
   runs every fixture in this repo's `conformance/` through this package's
   own validator (`test/conformance.test.ts`) — a schema change with no
   matching type update fails that suite.
-- **Validate** — one JSON Schema validator (`ajv`) per document type.
+- **Validate** — one JSON Schema validator per document type, generated at
+  build time (ajv standalone code) so nothing is compiled or evaluated at run
+  time and a strict Content Security Policy (no `unsafe-eval`) is fine.
 - **Bundle** — `bundlePackage()` turns an OPK package into its bundled
   payload: references become `ref` keys, prose is inlined, relative paths
   and links are rewritten relative to the bundle, answer keys are

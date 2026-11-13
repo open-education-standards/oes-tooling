@@ -1,6 +1,5 @@
-import Ajv, { type ErrorObject, type ValidateFunction } from "ajv";
-import addFormats from "ajv-formats";
-import { schemas, type DocumentType } from "./schemas.js";
+import type { ErrorObject } from "ajv";
+import { validators } from "./generated/validators.js";
 import type { OafArticle } from "./types/oaf.js";
 import type { OcfCourse, OcfLesson, OcfModule } from "./types/ocf.js";
 import type { OpfSet } from "./types/opf.js";
@@ -16,27 +15,10 @@ export interface ValidationResult<T> {
   data?: T;
 }
 
-// One Ajv instance, one compiled validator per document type, both built
-// lazily on first use and cached — most consumers only ever validate one
-// or two document types, so there's no reason to compile all eight upfront.
-const ajv = new Ajv({ strict: false, allErrors: true });
-addFormats(ajv);
-
-const compiled = new Map<DocumentType, ValidateFunction>();
-
-function getValidator(docType: DocumentType): ValidateFunction {
-  let fn = compiled.get(docType);
-  if (fn) return fn;
-
-  const entry = schemas[docType];
-  const schema =
-    "definition" in entry
-      ? { definitions: entry.schema.definitions, $ref: `#/definitions/${entry.definition}` }
-      : entry.schema;
-  fn = ajv.compile(schema);
-  compiled.set(docType, fn);
-  return fn;
-}
+// The validators are generated at build time (scripts/build-validators.mjs)
+// rather than compiled with ajv here: ajv compiles with `new Function`, which
+// a host with a strict Content Security Policy refuses.
+export type DocumentType = keyof typeof validators;
 
 /**
  * Validate `data` against one OES document type's JSON Schema. Does not
@@ -45,7 +27,7 @@ function getValidator(docType: DocumentType): ValidateFunction {
  * roadmap's planned `oes lint`. This only confirms `data`'s own shape.
  */
 export function validate<T = unknown>(docType: DocumentType, data: unknown): ValidationResult<T> {
-  const fn = getValidator(docType);
+  const fn = validators[docType];
   const valid = fn(data) as boolean;
   return valid
     ? { valid: true, errors: null, data: data as T }
@@ -78,5 +60,3 @@ export const validateOcfModule = (data: unknown): ValidationResult<OcfModule> =>
 
 export const validateOcfLesson = (data: unknown): ValidationResult<OcfLesson> =>
   validate<OcfLesson>("ocf.lesson", data);
-
-export type { DocumentType } from "./schemas.js";

@@ -21,19 +21,24 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
+    "build-validators": "node scripts/build-validators.mjs",
+    "pretypecheck": "npm run build-validators",
+    "pretest": "npm run build-validators",
+    "prebuild": "npm run build-validators",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src test",
+    "lint": "eslint src test scripts",
     "test": "vitest run",
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@inklyre/oes-schemas": "^0.2.0",
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.18.0",
+    "@inklyre/oes-schemas": "^0.2.0",
     "@types/node": "^22.10.5",
+    "esbuild": "^0.27.7",
     "eslint": "^9.18.0",
     "tsup": "^8.3.5",
     "typescript": "^5.8.3",

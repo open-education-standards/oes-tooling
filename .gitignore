@@ -8,3 +8,6 @@ packages/schemas/vendor/
 
 # Personal/internal reference notes — not meant for the public repo.
 planning/
+
+# Generated from the built oes-schemas by packages/core/scripts/build-validators.mjs
+packages/core/src/generated/

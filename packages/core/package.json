@@ -39,7 +39,7 @@
     "@open-education-standards/schemas": "^0.1.2",
     "@types/node": "^22.10.5",
     "esbuild": "^0.27.7",
-    "eslint": "^9.18.0",
+    "eslint": "^10.14.0",
     "tsup": "^8.3.5",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.20.0",

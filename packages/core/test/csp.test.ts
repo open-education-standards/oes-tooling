@@ -1,5 +1,9 @@
 import { build } from "esbuild";
+import { readdirSync, readFileSync } from "node:fs";
+import { createRequire } from "node:module";
+import { join } from "node:path";
 import { fileURLToPath } from "node:url";
+import vm from "node:vm";
 import { describe, expect, it } from "vitest";
 import { validate } from "../src/validate.js";
 
@@ -33,3 +37,59 @@ describe("no run-time code evaluation", () => {
     expect(result.errors?.[0]).toHaveProperty("keyword");
   });
 });
+
+// The scan above can miss a path it does not recognise, so this runs the
+// bundled package in a context where eval and Function(...) throw, and calls
+// every document type's validator in it.
+describe("validators run with code generation from strings disabled", () => {
+  const VALID_FIXTURES: Record<string, string> = {
+    "oaf.article": "oaf/valid/article.json",
+    "ovf.video": "ovf/valid/streaming-only.json",
+    "orf.resource": "orf/valid/basic.json",
+    "oqf.question": "oqf/valid/question/essay.json",
+    "oqf.stimulus": "oqf/valid/stimulus/",
+    "opf.set": "opf/valid/co-located.json",
+    "opk.package": "opk/valid/package/minimal.json",
+    "opk.hub": "opk/valid/hub/empty.json",
+    "opk.hub-package": "opk/valid/hub-package/single-version.json",
+    "ocf.course": "ocf/valid/course/basic.json",
+    "ocf.module": "ocf/valid/module/basic.json",
+    "ocf.lesson": "ocf/valid/lesson/full.json",
+  };
+
+  it("validates a valid and an invalid document of every type", async () => {
+    const entry = fileURLToPath(new URL("../src/index.ts", import.meta.url));
+    const result = await build({
+      entryPoints: [entry],
+      bundle: true,
+      write: false,
+      format: "cjs",
+      platform: "node",
+      logLevel: "silent",
+    });
+    const sandbox = vm.createContext({}, { codeGeneration: { strings: false, wasm: false } });
+    const module = { exports: {} as { validate?: (docType: string, data: unknown) => { valid: boolean } } };
+    const load = vm.runInContext(
+      `(function (module, exports, require) {${result.outputFiles[0].text}\n})`,
+      sandbox,
+    ) as (m: unknown, e: unknown, r: NodeRequire) => void;
+    load(module, module.exports, createRequire(import.meta.url));
+    const { validate: sandboxed } = module.exports;
+    expect(sandboxed).toBeTypeOf("function");
+
+    // Proves the sandbox does what this test relies on.
+    expect(() => vm.runInContext("new Function('return 1')", sandbox)).toThrow();
+
+    for (const [docType, file] of Object.entries(VALID_FIXTURES)) {
+      const path = fileURLToPath(new URL(`./fixtures/${file}`, import.meta.url));
+      const doc = file.endsWith("/") ? readdirJson(path) : JSON.parse(readFileSync(path, "utf8"));
+      expect(sandboxed!(docType, doc).valid, `${docType} valid`).toBe(true);
+      expect(sandboxed!(docType, {}).valid, `${docType} invalid`).toBe(false);
+    }
+  });
+});
+
+function readdirJson(dir: string): unknown {
+  const [first] = readdirSync(dir).filter((name) => name.endsWith(".json"));
+  return JSON.parse(readFileSync(join(dir, first), "utf8"));
+}

@@ -1,6 +1,6 @@
 {
   "name": "@inklyre/oes-lint",
-  "version": "0.3.0",
+  "version": "0.2.1",
   "description": "Referential-integrity linting for OES content: dangling references, duplicate ids, pool select bounds, answer cross-references, answer_key file existence, and content_hash mismatches.",
   "license": "Apache-2.0",
   "type": "module",
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@inklyre/oes-authoring": "^0.2.0",
-    "@inklyre/oes-core": "^0.4.0",
+    "@inklyre/oes-core": "^0.3.1",
     "@inklyre/oes-import-youtube": "^0.1.0"
   },
   "devDependencies": {

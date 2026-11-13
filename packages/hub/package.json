@@ -30,8 +30,8 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@inklyre/oes-core": "^0.4.0",
-    "@inklyre/oes-lint": "^0.3.0",
+    "@inklyre/oes-core": "^0.3.1",
+    "@inklyre/oes-lint": "^0.2.1",
     "yaml": "^2.9.0"
   },
   "devDependencies": {

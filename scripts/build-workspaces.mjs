@@ -4,7 +4,7 @@
 // `npm run build --workspaces` builds in directory order, which puts
 // authoring before the core it imports and schemas last of all. That
 // only works when every dist/ already exists. Internal dependency ranges
-// (core on oes-schemas ^0.2.0, everything else on oes-core ^0.4.0) are
+// (core on oes-schemas ^0.1.2, everything else on oes-core ^0.3.1) are
 // often ahead of what is on npm, so npm links the local workspace package,
 // and its dist/ has to be built first. On a fresh clone it isn't.
 //

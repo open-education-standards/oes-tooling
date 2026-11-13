@@ -1,6 +1,6 @@
 {
   "name": "create-oes",
-  "version": "0.2.0",
+  "version": "0.1.1",
   "description": "Scaffold a minimal, valid OES course \u2014 one course, one module, one lesson, one practice set, one question \u2014 via `npm create oes`.",
   "license": "Apache-2.0",
   "type": "module",
@@ -30,8 +30,8 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@inklyre/oes-core": "^0.4.0",
-    "@inklyre/oes-lint": "^0.3.0"
+    "@inklyre/oes-core": "^0.3.1",
+    "@inklyre/oes-lint": "^0.2.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.18.0",

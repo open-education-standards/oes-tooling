@@ -1,7 +1,8 @@
 name: "@inklyre/oes-schemas sync + publish"
 
 # Polls the public spec repo (github.com/open-education-standards/oes) for schema changes
-# and publishes a new patch of @inklyre/oes-schemas when they're found.
+# and publishes a new patch of @inklyre/oes-schemas when they're found,
+# followed by a new patch of @inklyre/oes-core, which builds them in.
 # Deliberately schedule/dispatch-triggered rather than push-triggered from
 # oes's side — oes never needs any credential or workflow that reaches
 # into this repo; this repo does all the work, using only read access to
@@ -63,23 +64,59 @@ jobs:
           npm version patch --no-git-tag-version
           echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
 
+      # oes-core bakes the schemas into its validators at build time, so a
+      # schemas patch only reaches consumers through a new oes-core release.
+      - name: Bump oes-core and point it at the new schemas
+        if: steps.check.outputs.changed == 'true'
+        id: bump_core
+        working-directory: packages/core
+        run: |
+          npm version patch --no-git-tag-version
+          node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            pkg.devDependencies['@inklyre/oes-schemas'] = '^${{ steps.bump.outputs.version }}';
+            fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+          "
+          echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+
+      # Without this the lockfile still names the old versions and npm ci fails.
+      - name: Refresh the lockfile
+        if: steps.check.outputs.changed == 'true'
+        run: npm install --package-lock-only
+
+      - name: Build schemas, then verify and build oes-core
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          npm run build --workspace @inklyre/oes-schemas
+          npm run typecheck --workspace @inklyre/oes-core
+          npm run test --workspace @inklyre/oes-core
+          npm run build --workspace @inklyre/oes-core
+
       - name: Record new content hash
         if: steps.check.outputs.changed == 'true'
         working-directory: packages/schemas
         run: echo "${{ steps.check.outputs.new_hash }}" > .content-hash
 
-      - name: Commit version bump and hash
+      - name: Commit version bumps and hash
         if: steps.check.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add packages/schemas/package.json packages/schemas/.content-hash
-          git commit -m "chore: auto-publish @inklyre/oes-schemas ${{ steps.bump.outputs.version }}"
+          git add packages/schemas/package.json packages/schemas/.content-hash packages/core/package.json package-lock.json
+          git commit -m "chore: auto-publish @inklyre/oes-schemas ${{ steps.bump.outputs.version }} and @inklyre/oes-core ${{ steps.bump_core.outputs.version }}"
           git push
 
-      - name: Publish to npm
+      - name: Publish oes-schemas to npm
         if: steps.check.outputs.changed == 'true'
         working-directory: packages/schemas
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish oes-core to npm
+        if: steps.check.outputs.changed == 'true'
+        working-directory: packages/core
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -34,6 +34,14 @@ compares its list with the spec repo's own record of current schemas and
 fails if they disagree, so a new or bumped schema can't be silently left
 out.
 
+**Validators are generated, not compiled at run time.** ajv builds validators
+with `new Function`, which a host with a strict Content Security Policy
+refuses. `oes-core` generates standalone validators from `oes-schemas` in its
+`prebuild` (`build-validators`; the output is git-ignored, like the vendored
+schemas), so `oes-schemas` is only a build-time dependency of core and a
+schema change reaches consumers in a new `oes-core` release: the sync
+workflow publishes a core patch after each schemas patch.
+
 **Hand-written types, kept honest by conformance tests.** The TypeScript
 types are written by hand for readability. `oes-core` runs the spec's
 conformance fixtures through its own validator, so a schema change with no
